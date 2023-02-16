@@ -10,7 +10,7 @@ sap.ui.define([
         "use strict";
         return Controller.extend("appartments.controller.View1", {
             onInit: function () {
-                this.onReadyKey();
+                this.onReadAll();
             },
             onReadAll: function () {
                 const that = this;
@@ -89,6 +89,27 @@ sap.ui.define([
                         console.log(oError);
                     }
                 })                 
-            }
+            },
+            create : function () {
+                // show a native JavaScript alert
+                var oDialog = new sap.m.Dialog({
+                    title: "My Dialog",
+                    content: new sap.m.Text({ text: "Dialog content" }),
+                    beginButton: new sap.m.Button({
+                      text: "OK",
+                      press: function() {
+                        oDialog.close();
+                      }
+                    }),
+                    endButton: new sap.m.Button({
+                      text: "Cancel",
+                      press: function() {
+                        oDialog.close();
+                      }
+                    })
+                  });
+                
+                  oDialog.open();
+             }
         });
     });

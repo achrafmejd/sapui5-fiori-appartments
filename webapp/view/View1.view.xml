@@ -2,6 +2,11 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m" xmlns:w="sap.ui.webc.main">
     <Page id="page" title="{i18n>title}">
+    <Button 
+        id="_create" 
+        text="create"
+        press=".create"
+    />
     <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
         <Table id="idProducts" width="120%" items="{/results}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster"> 
             <columns>
