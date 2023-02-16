@@ -16,11 +16,9 @@ sap.ui.define([
                 const oModel = this.getOwnerComponent().getModel();
                 oModel.read("/APPARTMENTSHeadersSet", {
                     success: function(oData) {
-                        console.log(oData);
-                        
+                        // console.log(oData);
                         const jModel = new sap.ui.model.json.JSONModel(oData);      
-                        
-                        that.getView("idProducts").setModel(jModel)
+                        that.getView("idProducts").setModel(jModel);
                     },
                     error: function(oError) {
                         console.log(oError);

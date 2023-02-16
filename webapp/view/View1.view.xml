@@ -7,17 +7,78 @@
                 <Column id="Id">
                     <Text text="Identifiant" />
                 </Column>
-                <!-- <Column id="Id">
+                <Column id="Desc">
                     <Text text="Description" />
-                </Column> -->
+                </Column>
+                <Column id="NbrPieces">
+                    <Text text="Nombre de Pieces" />
+                </Column>
+                <Column id="NbrChambres">
+                    <Text text="Nombre de Chambres" />
+                </Column>
+                <Column id="NbrSalleDeBains">
+                    <Text text="Salles de Bain" />
+                </Column>
+                <Column id="Superficie">
+                    <Text text="Superficie" />
+                </Column>
+                <Column id="Etage">
+                    <Text text="Etage" />
+                </Column>
+                <Column id="Garage">
+                    <Text text="Garage" />
+                </Column>
+                <Column id="Ascenseur">
+                    <Text text="Ascenseur" />
+                </Column>
+                <Column id="Climatisation">
+                    <Text text="Climatisation" />
+                </Column>
+                <Column id="PrixNuitee">
+                    <Text text="Prix Nuitee" />
+                </Column>
+                <Column id="Disponible">
+                    <Text text="Disponible" />
+                </Column>
             </columns>
             <items>
                 <ColumnListItem>
                     <cells>
                         <Text text="{Identifiant}"></Text>
-                        <!-- <Text text="{Description}"></Text> -->
                     </cells>
-                   
+                    <cells>
+                        <Text text="{Description}"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{NbrPieces}"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{NbrChambres}"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{NbrSalleDeBains}"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{Superficie}"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{Etage}"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }"></Text>
+                    </cells>
+                    <cells>
+                        <Text text="{= parseInt(${PrixNuitee})}"/>
+                    </cells>
+                    <cells>
+                        <Text text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"></Text>
+                    </cells>
                 </ColumnListItem>
             </items>
         </Table>
