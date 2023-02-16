@@ -2,7 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m" xmlns:w="sap.ui.webc.main">
     <Page id="page" title="{i18n>title}">
-        <Table id="idProducts" items="{/results}">
+    <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
+        <Table id="idProducts" width="120%" items="{/results}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster"> 
             <columns>
                 <Column id="Id">
                     <Text id="_IDGenText1" text="Identifiant" />
@@ -11,10 +12,10 @@
                     <Text id="_IDGenText2" text="Description" />
                 </Column>
                 <Column id="NbrPieces">
-                    <Text id="_IDGenText3" text="Nombre de Pieces" />
+                    <Text id="_IDGenText3" text="Nbr.Pieces" />
                 </Column>
                 <Column id="NbrChambres">
-                    <Text id="_IDGenText4" text="Nombre de Chambres" />
+                    <Text id="_IDGenText4" text="Nbr.Chambres" />
                 </Column>
                 <Column id="NbrSalleDeBains">
                     <Text id="_IDGenText5" text="Salles de Bain" />
@@ -35,7 +36,7 @@
                     <Text id="_IDGenText10" text="Climatisation" />
                 </Column>
                 <Column id="PrixNuitee">
-                    <Text id="_IDGenText11" text="Prix Nuitee" />
+                    <Text id="_IDGenText11" text="Prix/Nuitee" />
                 </Column>
                 <Column id="Disponible">
                     <Text id="_IDGenText12" text="Disponible" />
@@ -85,5 +86,7 @@
                 </ColumnListItem>
             </items>
         </Table>
+    
+    </ScrollContainer>
     </Page>
 </mvc:View>
