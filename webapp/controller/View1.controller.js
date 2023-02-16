@@ -9,7 +9,21 @@ sap.ui.define([
 
         return Controller.extend("appartments.controller.View1", {
             onInit: function () {
-
+                this.onReadAll();
+            },
+            onReadAll: function () {
+                const that = this;
+                const oModel = this.getOwnerComponent().getModel();
+                oModel.read("/APPARTMENTSHeadersSet", {
+                    success: function(oData) {
+                        console.log(oData);
+                        const jModel = sap.ui.model.json.JSONModel(oData);
+                        that.getView().ById("IdProducts").setModel(jModel);
+                    },
+                    error: function(oError) {
+                        console.log(oError);
+                    }
+                });
             }
         });
     });
