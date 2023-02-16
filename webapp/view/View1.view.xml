@@ -1,83 +1,86 @@
 <mvc:View controllerName="appartments.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m" xmlns:w="sap.ui.webc.main">
     <Page id="page" title="{i18n>title}">
         <Table id="idProducts" items="{/results}">
             <columns>
                 <Column id="Id">
-                    <Text text="Identifiant" />
+                    <Text id="_IDGenText1" text="Identifiant" />
                 </Column>
                 <Column id="Desc">
-                    <Text text="Description" />
+                    <Text id="_IDGenText2" text="Description" />
                 </Column>
                 <Column id="NbrPieces">
-                    <Text text="Nombre de Pieces" />
+                    <Text id="_IDGenText3" text="Nombre de Pieces" />
                 </Column>
                 <Column id="NbrChambres">
-                    <Text text="Nombre de Chambres" />
+                    <Text id="_IDGenText4" text="Nombre de Chambres" />
                 </Column>
                 <Column id="NbrSalleDeBains">
-                    <Text text="Salles de Bain" />
+                    <Text id="_IDGenText5" text="Salles de Bain" />
                 </Column>
                 <Column id="Superficie">
-                    <Text text="Superficie" />
+                    <Text id="_IDGenText6" text="Superficie" />
                 </Column>
                 <Column id="Etage">
-                    <Text text="Etage" />
+                    <Text id="_IDGenText7" text="Etage" />
                 </Column>
                 <Column id="Garage">
-                    <Text text="Garage" />
+                    <Text id="_IDGenText8" text="Garage" />
                 </Column>
                 <Column id="Ascenseur">
-                    <Text text="Ascenseur" />
+                    <Text id="_IDGenText9" text="Ascenseur" />
                 </Column>
                 <Column id="Climatisation">
-                    <Text text="Climatisation" />
+                    <Text id="_IDGenText10" text="Climatisation" />
                 </Column>
                 <Column id="PrixNuitee">
-                    <Text text="Prix Nuitee" />
+                    <Text id="_IDGenText11" text="Prix Nuitee" />
                 </Column>
                 <Column id="Disponible">
-                    <Text text="Disponible" />
+                    <Text id="_IDGenText12" text="Disponible" />
                 </Column>
             </columns>
             <items>
-                <ColumnListItem>
+                <ColumnListItem id="_IDGenColumnListItem1">
                     <cells>
-                        <Text text="{Identifiant}"></Text>
+                        <Text id="_IDGenText13" text="{Identifiant}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{Description}"></Text>
+                        <Text id="_IDGenText14" text="{Description}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{NbrPieces}"></Text>
+                        <Text id="_IDGenText15" text="{NbrPieces}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{NbrChambres}"></Text>
+                        <Text id="_IDGenText16" text="{NbrChambres}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{NbrSalleDeBains}"></Text>
+                        <Text id="_IDGenText17" text="{NbrSalleDeBains}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{Superficie}"></Text>
+                        <Text id="_IDGenText18" text="{Superficie}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{Etage}"></Text>
+                        <Text id="_IDGenText19" text="{Etage}"></Text>
                     </cells>
                     <cells>
-                        <Text text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }"></Text>
+                        <w:Badge id="_IDGenBadge1" colorScheme="{= ${Garage} === 'X' ? '6' : '1' }" text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }" />
                     </cells>
                     <cells>
-                        <Text text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }"></Text>
+                        <w:Badge id="_IDGenBadge2" colorScheme="{= ${Ascenseur} === 'X' ? '6' : '1' }" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
+                        <!-- <Text id="_IDGenText21" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }"></Text> -->
                     </cells>
                     <cells>
-                        <Text text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }"></Text>
+                        <w:Badge id="_IDGenBadge3" colorScheme="{= ${Climatisation} === 'X' ? '6' : '1' }" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
+                        <!-- <Text id="_IDGenText22" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }"></Text> -->
                     </cells>
                     <cells>
-                        <Text text="{= parseInt(${PrixNuitee})}"/>
+                        <Text id="_IDGenText23" text="{= parseInt(${PrixNuitee})}"/>
                     </cells>
                     <cells>
-                        <Text text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"></Text>
+                        <w:Badge id="_IDGenBadge4" colorScheme="{= ${Disponible} === 'X' ? '6' : '1' }" text="{= ${Disponible} === 'X' ? 'Avec' : 'Sans' }" />
+                        <!-- <Text id="_IDGenText24" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"></Text> -->
                     </cells>
                 </ColumnListItem>
             </items>
