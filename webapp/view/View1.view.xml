@@ -2,17 +2,22 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <Table id="IdProducts">
+        <Table id="idProducts" items="{/results}">
             <columns>
                 <Column id="Id">
                     <Text text="Identifiant" />
                 </Column>
+                <!-- <Column id="Id">
+                    <Text text="Description" />
+                </Column> -->
             </columns>
             <items>
                 <ColumnListItem>
                     <cells>
                         <Text text="{Identifiant}"></Text>
+                        <!-- <Text text="{Description}"></Text> -->
                     </cells>
+                   
                 </ColumnListItem>
             </items>
         </Table>
