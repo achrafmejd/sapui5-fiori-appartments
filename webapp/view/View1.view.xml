@@ -1,0 +1,20 @@
+<mvc:View controllerName="appartments.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <Table id="IdProducts">
+            <columns>
+                <Column id="Id">
+                    <Text text="Identifiant" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{Identifiant}"></Text>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>
