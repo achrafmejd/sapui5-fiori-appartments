@@ -4,32 +4,39 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:w="sap.ui.webc.main"
 	xmlns="sap.m">
 	<Page
 		id="idPage"
-		title=" Product XY"
-		class= "sapUiResponsivePadding--header" >
+		
+		class= "sapUiResponsivePadding--header"  >
 		<!-- this CSS class add a standard spacing to all the page content -->
 
 		<content>
-			<!-- <ObjectHeader id="_IDGenObjectHeader1"
-				title="{Name}"
+			<ObjectHeader id="_IDGenObjectHeader1"
+				title="{Identifiant}" 
 				backgroundDesign="Solid"
 				number="{
-					parts:[{path:'Price'},{path:'CurrencyCode'}],
+					parts:[{path:'PrixNuitee'},{path:'CurrencyCode'}],
 					type: 'sap.ui.model.type.Currency',
-					formatOptions: {showMeasure: false}
+                    formatter: '.formatPrice',
+					formatOptions: {showMeasure: true}
 				}"
-				numberUnit="{CurrencyCode}" > -->
-				<!-- <attributes>
-					<ObjectAttribute id="_IDGenObjectAttribute1" title="Weight" text="{WeightMeasure} {WeightUnit}" />
-					<ObjectAttribute id="_IDGenObjectAttribute2" title="Dimensions" text="{Width} x {Depth} X {Height} {DimUnit}" />
+				numberUnit="MAD" 
+                >
+				<attributes>
+                
+					<ObjectAttribute id="_IDGenObjectAttribute1" title="Garage"  text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }" />
+                    <ObjectAttribute id="_IDGenObjectAttribute2" title="Ascenseur"  text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
+                    <ObjectAttribute id="_IDGenObjectAttribute3" title="Climatisation"  text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
+                   
 				</attributes>
 				<statuses>
-					<ObjectStatus id="_IDGenObjectStatus1" title="Status" text="In Stock" state="Success" />
-				</statuses> -->
-			<!-- </ObjectHeader> -->
-			<!-- <IconTabBar id="_IDGenIconTabBar1"
+					<ObjectStatus id="_IDGenObjectStatus1" title="Status" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" state="Success" />
+				</statuses>
+                
+			</ObjectHeader>
+			 <IconTabBar id="_IDGenIconTabBar1"
 				expanded="{device>/isNoPhone}"
 				class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
 				<items>
@@ -41,38 +48,30 @@
 							maxContainerCols="2"
 							layout="ResponsiveGridLayout" >
 							<f:title>
-								<core:Title id="_IDGenTitle1" text="A Form" />
+								<core:Title id="_IDGenTitle1" text="Informations Générales" />
 							</f:title>
-							<Label id="_IDGenLabel1" text="Label"/>
-							<Text id="_IDGenText1" text="Value"/>
+                            <Label id="_IDGenLabel6" text="Adresse"/>
+							<Text id="_IDGenText6" text="{Description}"/>
+							<Label id="_IDGenLabel1" text="Nombre de Pieces"/>
+							<Text id="_IDGenText1" text="{NbrPieces}"/>
+                            <Label id="_IDGenLabel2" text="Nombre de Chambres"/>
+							<Text id="_IDGenText2" text="{NbrChambres}"/>
+                            <Label id="_IDGenLabel3" text="Nombre de Salles de Bain"/>
+							<Text id="_IDGenText3" text="{NbrSalleDeBains}"/>
+                            <Label id="_IDGenLabel4" text="Superficie"/>
+							<Text id="_IDGenText4" text="{Superficie} m²"/>
+                            <Label id="_IDGenLabel5" text="Etage"/>
+							<Text id="_IDGenText5" text="{Etage}"/>
 						</f:SimpleForm>
 					</IconTabFilter>
 					<IconTabFilter id="_IDGenIconTabFilter2"
 						key="attachments"
-						text="Attachments">
+						text="Reservations">
 						<List id="_IDGenList1" headerText="A List" showSeparators="Inner" >
 						</List>
 					</IconTabFilter>
-					<IconTabFilter id="_IDGenIconTabFilter3"
-						key="notes"
-						text="Notes">
-						<FeedInput id="_IDGenFeedInput1" />
-					</IconTabFilter>
 				</items>
 			</IconTabBar>
-			<f:SimpleForm id="_IDGenSimpleForm2"
-				minWidth="1024"
-				maxContainerCols="2"
-				class="sapUiForceWidthAuto sapUiResponsiveMargin" >
-				<f:title>
-					<core:Title id="_IDGenTitle2" text="A Form" />
-				</f:title>
-				<Label id="_IDGenLabel2" text="Label"/>
-				<Text id="_IDGenText2" text="Value"/>
-			</f:SimpleForm>
-			<List id="_IDGenList2" headerText="A List" backgroundDesign="Translucent" width="auto" class="sapUiResponsiveMargin"/>
-			<Table id="_IDGenTable1" headerText="A Table" width="auto" class="sapUiResponsiveMargin"/>
-			<Panel id="_IDGenPanel1" headerText="A Panel" width="auto" class="sapUiResponsiveMargin"/> -->
 		</content>
 	</Page>
 </mvc:View>
