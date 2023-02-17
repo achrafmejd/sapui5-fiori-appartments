@@ -6,50 +6,51 @@
             xmlns:w="sap.ui.webc.main" 
             xmlns:l="sap.ui.layout"
 >
-        <!-- <Dialog id="helloDialog"  contentWidth="60%" title="Ajouter un nouvel appartement">
+<Button id="_create" text="create" press=".handleOpen" />
+        <Dialog id="helloDialog"  contentWidth="60%" title="Ajouter un nouvel appartement">
             <l:VerticalLayout id="_IDGenVerticalLayout1">
-
-                <Label id="_IDGenLabel1" for="Identifiant" showColon="true" text="Appartment ID" />
+                <Label id="_IDGenLabel1"  showColon="true" text="Appartment ID" />
                 <Input type="Text" id="Identifiant" placeholder="Enter ID" required="true"/>
 
-                <Label id="_IDGenLabel2" for="Description" showColon="true" text="Description" />
+                <Label id="_IDGenLabel2" showColon="true" text="Description" />
                 <TextArea id="Description" placeholder="Enter a Description"></TextArea>
                 
-                <Label id="_IDGenLabel3" for="NbrPieces" showColon="true" text="Nbr Pieces" />
+                <Label id="_IDGenLabel3"  showColon="true" text="Nbr Pieces" />
                 <Input type="Number" id="NbrPieces_input" placeholder="Enter e-mail" />
 
-                <Label id="_IDGenLabel4" for="NbrChambres" showColon="true" text="Nbr chambres" />
+                <Label id="_IDGenLabel4"  showColon="true" text="Nbr chambres" />
                 <Input type="Number" id="NbrChambres_input" placeholder="Enter e-mail" />
 
-                <Label id="_IDGenLabel5" for="NbrSalleDeBains" showColon="true" text="salles de bain" />
+                <Label id="_IDGenLabel5"  showColon="true" text="salles de bain" />
                 <Input type="Number" id="NbrSalleDeBains_input" placeholder="Enter e-mail" />
 
-                <Label id="_IDGenLabel6" for="Superficie" showColon="true" text="superficie" />
+                <Label id="_IDGenLabel6" showColon="true" text="superficie" />
                 <Input type="Number" id="Superficie_input" placeholder="Enter e-mail" />
 
-                <Label id="_IDGenLabel7" for="Etages" showColon="true" text="etage" />
+                <Label id="_IDGenLabel7" showColon="true" text="etage" />
                 <Input type="Number" id="_IDGenInput1" placeholder="Enter e-mail" />
 
-                <Label id="_IDGenLabel8" for="" showColon="true" text="Garage" />
+                <Label id="_IDGenLabel8"  showColon="true" text="Garage" />
                 <CheckBox id="_IDGenCheckBox3" text="Avec" selected="true" />
 
-                <Label id="_IDGenLabel9" for="" showColon="true" text="Asc" />
+                <Label id="_IDGenLabel9"  showColon="true" text="Asc" />
                 <CheckBox id="_IDGenCheckBox2" text="Avec" selected="true" />
 
-                <Label id="_IDGenLabel10" for="" showColon="true" text="Clima" />
+                <Label id="_IDGenLabel10"  showColon="true" text="Clima" />
                 <CheckBox id="_IDGenCheckBox1" text="Avec" selected="true" />
               
 
-                <Label id="_IDGenLabel11" for="emil" showColon="true" text="prix" />
+                <Label id="_IDGenLabel11"  showColon="true" text="prix" />
                 
                 <Input type="Number" id="_IDGenInput5" placeholder="Enter e-mail" />
 
-                <Label id="_IDGenLabel12" for="" showColon="true" text="Dispo" />
-                <Input type="Number" id="_IDGenInput6" placeholder="Enter e-mail" />
+                <Label id="_IDGenLabel12" showColon="true" text="Dispo" />
+                <CheckBox id="_IDGenCheckBox0" text="Avec" selected="true" />
+            
             </l:VerticalLayout>
             <buttons>
-                <Button click=".handleClose" text="Add" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
-                <Button click=".handleClose" text="Cancel" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                <Button id="_IDGenButton1" press=".handleSubmit" text="Add" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                <Button id="_IDGenButton2" press=".handleClose" text="Cancel" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
             </buttons>
-        </Dialog> -->
+        </Dialog>
 </mvc:View>

@@ -5,8 +5,10 @@ xmlns:w="sap.ui.webc.main"
 xmlns:l="sap.ui.layout"
 >
     <Page id="page" title="{i18n>title}">
-        <Button id="_create" text="create" press=".handleOpen" />
-        <Dialog id="helloDialog"  contentWidth="60%" title="Ajouter un nouvel appartement">
+        <!-- <Button id="_create" text="create" press=".handleOpen" /> -->
+        <mvc:XMLView id="_IDGenXMLView1" viewName="appartments.view.CreateDialog"/>
+
+        <!-- <Dialog id="helloDialog"  contentWidth="60%" title="Ajouter un nouvel appartement">
             <l:VerticalLayout id="_IDGenVerticalLayout1">
 
                 <Label id="_IDGenLabel1"  showColon="true" text="Appartment ID" />
@@ -52,7 +54,7 @@ xmlns:l="sap.ui.layout"
                 <Button press=".handleSubmit" text="Add" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
                 <Button press=".handleClose" text="Cancel" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
             </buttons>
-        </Dialog>
+        </Dialog> -->
 
 
 
