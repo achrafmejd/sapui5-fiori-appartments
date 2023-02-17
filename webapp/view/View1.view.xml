@@ -1,97 +1,145 @@
-<mvc:View controllerName="appartments.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m" xmlns:w="sap.ui.webc.main">
+<mvc:View controllerName="appartments.controller.View1" 
+xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+xmlns="sap.m" 
+xmlns:w="sap.ui.webc.main" 
+xmlns:l="sap.ui.layout"
+>
     <Page id="page" title="{i18n>title}">
-    <Button 
-        id="_create" 
-        text="create"
-        press=".create"
-    />
-    <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
-        <Table id="idProducts" width="120%" items="{/results}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster"> 
-            <columns>
-                <Column id="Id">
-                    <Text id="_IDGenText1" text="Identifiant" />
-                </Column>
-                <Column id="Desc">
-                    <Text id="_IDGenText2" text="Description" />
-                </Column>
-                <Column id="NbrPieces">
-                    <Text id="_IDGenText3" text="Nbr.Pieces" />
-                </Column>
-                <Column id="NbrChambres">
-                    <Text id="_IDGenText4" text="Nbr.Chambres" />
-                </Column>
-                <Column id="NbrSalleDeBains">
-                    <Text id="_IDGenText5" text="Salles de Bain" />
-                </Column>
-                <Column id="Superficie">
-                    <Text id="_IDGenText6" text="Superficie" />
-                </Column>
-                <Column id="Etage">
-                    <Text id="_IDGenText7" text="Etage" />
-                </Column>
-                <Column id="Garage">
-                    <Text id="_IDGenText8" text="Garage" />
-                </Column>
-                <Column id="Ascenseur">
-                    <Text id="_IDGenText9" text="Ascenseur" />
-                </Column>
-                <Column id="Climatisation">
-                    <Text id="_IDGenText10" text="Climatisation" />
-                </Column>
-                <Column id="PrixNuitee">
-                    <Text id="_IDGenText11" text="Prix/Nuitee" />
-                </Column>
-                <Column id="Disponible">
-                    <Text id="_IDGenText12" text="Disponible" />
-                </Column>
-            </columns>
-            <items>
-                <ColumnListItem id="_IDGenColumnListItem1">
-                    <cells>
-                        <Text id="_IDGenText13" text="{Identifiant}"></Text>
-                    </cells>
-                    <cells>
-                        <ExpandableText id="_IDGenExpandableText1" text="{Description}"  maxCharacters="7"></ExpandableText>
-                    </cells>
-                    <cells>
-                        <Text id="_IDGenText15" text="{NbrPieces}"></Text>
-                    </cells>
-                    <cells>
-                        <Text id="_IDGenText16" text="{NbrChambres}"></Text>
-                    </cells>
-                    <cells>
-                        <Text id="_IDGenText17" text="{NbrSalleDeBains}"></Text>
-                    </cells>
-                    <cells>
-                        <Text id="_IDGenText18" text="{= parseInt(${Superficie})}"></Text>
-                    </cells>
-                    <cells>
-                        <Text id="_IDGenText19" text="{Etage}"></Text>
-                    </cells>
-                    <cells>
-                        <w:Badge id="_IDGenBadge1" colorScheme="{= ${Garage} === 'X' ? '6' : '1' }" text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }" />
-                    </cells>
-                    <cells>
-                        <w:Badge id="_IDGenBadge2" colorScheme="{= ${Ascenseur} === 'X' ? '6' : '1' }" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
-                        <!-- <Text id="_IDGenText21" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }"></Text> -->
-                    </cells>
-                    <cells>
-                        <w:Badge id="_IDGenBadge3" colorScheme="{= ${Climatisation} === 'X' ? '6' : '1' }" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
-                        <!-- <Text id="_IDGenText22" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }"></Text> -->
-                    </cells>
-                    <cells>
-                        <Text id="_IDGenText23" text="{= parseInt(${PrixNuitee})} MAD"/>
-                    </cells>
-                    <cells>
-                        <w:Badge id="_IDGenBadge4" colorScheme="{= ${Disponible} === 'X' ? '8' : '2' }" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" />
-                        <!-- <Text id="_IDGenText24" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"></Text> -->
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table>
-    
-    </ScrollContainer>
+        <Button id="_create" text="create" press=".handleOpen" />
+        <Dialog id="helloDialog"  contentWidth="60%" title="Ajouter un nouvel appartement">
+            <l:VerticalLayout id="_IDGenVerticalLayout1">
+
+                <Label id="_IDGenLabel1"  showColon="true" text="Appartment ID" />
+                <Input type="Text" id="Identifiant" placeholder="Enter ID" required="true"/>
+
+                <Label id="_IDGenLabel2" showColon="true" text="Description" />
+                <TextArea id="Description" placeholder="Enter a Description"></TextArea>
+                
+                <Label id="_IDGenLabel3"  showColon="true" text="Nbr Pieces" />
+                <Input type="Number" id="NbrPieces_input" placeholder="Enter e-mail" />
+
+                <Label id="_IDGenLabel4"  showColon="true" text="Nbr chambres" />
+                <Input type="Number" id="NbrChambres_input" placeholder="Enter e-mail" />
+
+                <Label id="_IDGenLabel5"  showColon="true" text="salles de bain" />
+                <Input type="Number" id="NbrSalleDeBains_input" placeholder="Enter e-mail" />
+
+                <Label id="_IDGenLabel6" showColon="true" text="superficie" />
+                <Input type="Number" id="Superficie_input" placeholder="Enter e-mail" />
+
+                <Label id="_IDGenLabel7" showColon="true" text="etage" />
+                <Input type="Number" id="_IDGenInput1" placeholder="Enter e-mail" />
+
+                <Label id="_IDGenLabel8"  showColon="true" text="Garage" />
+                <CheckBox id="_IDGenCheckBox3" text="Avec" selected="true" />
+
+                <Label id="_IDGenLabel9"  showColon="true" text="Asc" />
+                <CheckBox id="_IDGenCheckBox2" text="Avec" selected="true" />
+
+                <Label id="_IDGenLabel10"  showColon="true" text="Clima" />
+                <CheckBox id="_IDGenCheckBox1" text="Avec" selected="true" />
+              
+
+                <Label id="_IDGenLabel11"  showColon="true" text="prix" />
+                
+                <Input type="Number" id="_IDGenInput5" placeholder="Enter e-mail" />
+
+                <Label id="_IDGenLabel12" showColon="true" text="Dispo" />
+                <CheckBox id="_IDGenCheckBox0" text="Avec" selected="true" />
+            
+            </l:VerticalLayout>
+            <buttons>
+                <Button press=".handleSubmit" text="Add" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                <Button press=".handleClose" text="Cancel" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+            </buttons>
+        </Dialog>
+
+
+
+        <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
+            <Table id="idProducts" width="120%" items="{/APPARTMENTSHeadersSet}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster">
+                <columns>
+                    <Column id="Id">
+                        <Text id="_IDGenText1" text="Identifiant" />
+                    </Column>
+                    <Column id="Desc">
+                        <Text id="_IDGenText2" text="Description" />
+                    </Column>
+                    <Column id="NbrPieces">
+                        <Text id="_IDGenText3" text="Nbr.Pieces" />
+                    </Column>
+                    <Column id="NbrChambres">
+                        <Text id="_IDGenText4" text="Nbr.Chambres" />
+                    </Column>
+                    <Column id="NbrSalleDeBains">
+                        <Text id="_IDGenText5" text="Salles de Bain" />
+                    </Column>
+                    <Column id="Superficie">
+                        <Text id="_IDGenText6" text="Superficie" />
+                    </Column>
+                    <Column id="Etage">
+                        <Text id="_IDGenText7" text="Etage" />
+                    </Column>
+                    <Column id="Garage">
+                        <Text id="_IDGenText8" text="Garage" />
+                    </Column>
+                    <Column id="Ascenseur">
+                        <Text id="_IDGenText9" text="Ascenseur" />
+                    </Column>
+                    <Column id="Climatisation">
+                        <Text id="_IDGenText10" text="Climatisation" />
+                    </Column>
+                    <Column id="PrixNuitee">
+                        <Text id="_IDGenText11" text="Prix/Nuitee" />
+                    </Column>
+                    <Column id="Disponible">
+                        <Text id="_IDGenText12" text="Disponible" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1">
+                        <cells>
+                            <Text id="_IDGenText13" text="{Identifiant}" />
+                        </cells>
+                        <cells>
+                            <ExpandableText id="_IDGenExpandableText1" text="{Description}" maxCharacters="7" />
+                        </cells>
+                        <cells>
+                            <Text id="_IDGenText15" text="{NbrPieces}" />
+                        </cells>
+                        <cells>
+                            <Text id="_IDGenText16" text="{NbrChambres}" />
+                        </cells>
+                        <cells>
+                            <Text id="_IDGenText17" text="{NbrSalleDeBains}" />
+                        </cells>
+                        <cells>
+                            <Text id="_IDGenText18" text="{= parseInt(${Superficie})}" />
+                        </cells>
+                        <cells>
+                            <Text id="_IDGenText19" text="{Etage}" />
+                        </cells>
+                        <cells>
+                            <w:Badge id="_IDGenBadge1" colorScheme="{= ${Garage} === 'X' ? '6' : '1' }" text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }" />
+                        </cells>
+                        <cells>
+                            <w:Badge id="_IDGenBadge2" colorScheme="{= ${Ascenseur} === 'X' ? '6' : '1' }" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
+                            <!-- <Text id="_IDGenText21" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }"></Text> -->
+                        </cells>
+                        <cells>
+                            <w:Badge id="_IDGenBadge3" colorScheme="{= ${Climatisation} === 'X' ? '6' : '1' }" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
+                            <!-- <Text id="_IDGenText22" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }"></Text> -->
+                        </cells>
+                        <cells>
+                            <Text id="_IDGenText23" text="{= parseInt(${PrixNuitee})} MAD" />
+                        </cells>
+                        <cells>
+                            <w:Badge id="_IDGenBadge4" colorScheme="{= ${Disponible} === 'X' ? '8' : '2' }" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" />
+                            <!-- <Text id="_IDGenText24" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"></Text> -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
     </Page>
 </mvc:View>
