@@ -27,8 +27,7 @@ sap.ui.define([
                         console.log(oError);
                     }
                 });
-                
-
+            
             },
             onReadFilters: function () {
                 const that = this
@@ -92,6 +91,22 @@ sap.ui.define([
                         console.log(oError);
                     }
                 })                 
-            }
+            },
+            onRowPress: function(oEvent) {
+                // var oSelectedItem = oEvent.getSource();
+                // var oContext = oSelectedItem.getBindingContext();
+                // var oData = oContext.getProperty(null, oContext);
+                console.log(oEvent); // log the selected row data
+              },
+              onRowSelection: function(oEvent) {
+                // var oSelectedItem = oEvent.getSource().getSelectedItem();
+                console.log(oEvent.getSource().getSelectedItem().getBindingContext());
+                console.log(oEvent.getSource().getSelectedItem().getBindingContext().getProperty(null, oEvent.getSource().getSelectedItem().getBindingContext()));
+                // var oContext = oSelectedItem.getBindingContext();
+                // var oData = oContext.getProperty(null, oContext);
+                // "oData" contains the row data
+                // Use it as per your requirement
+             }
+              
         });
     });

@@ -1,49 +1,38 @@
 <mvc:View controllerName="appartments.controller.CreateDialog" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:w="sap.ui.webc.main" xmlns:l="sap.ui.layout">
     <!-- Create Button -->
-    <Button id="_create" text="create" press=".handleOpen" />
+    <Button type="Default" icon="sap-icon://home" id="_create" text="Create" press=".handleOpen" />
     <!-- OnClick : Dialog to display -->
-    <Dialog id="helloDialog" contentWidth="60%" title="Ajouter un nouvel appartement">
+    <Dialog id="helloDialog" contentWidth="40%" title="APPARTEMENT" icon="sap-icon://home">
         <l:VerticalLayout id="_IDGenVerticalLayout1">
-            <Label id="_IDGenLabel1" showColon="true" text="Appartment ID" />
-            <Input type="Text" id="Identifiant" placeholder="Enter ID" required="true" />
+            <Panel id="_IDGenPanel1" headerText="Informations Générales">
+                <!-- <Label id="_IDGenLabel1" showColon="true" text="Appartment ID" /> -->
+                <Input type="Text" id="Identifiant" placeholder="Enter ID" required="true" />
+                <TextArea id="Description" width="100%" placeholder="Enter a Description" />
+            </Panel>
 
-            <Label id="_IDGenLabel2" showColon="true" text="Description" />
-            <TextArea id="Description" placeholder="Enter a Description" />
-
-            <Label id="_IDGenLabel3" showColon="true" text="Nbr Pieces" />
-            <Input type="Number" id="NbrPieces_input" placeholder="Enter e-mail" />
-
-            <Label id="_IDGenLabel4" showColon="true" text="Nbr chambres" />
-            <Input type="Number" id="NbrChambres_input" placeholder="Enter e-mail" />
-
-            <Label id="_IDGenLabel5" showColon="true" text="salles de bain" />
-            <Input type="Number" id="NbrSalleDeBains_input" placeholder="Enter e-mail" />
-
-            <Label id="_IDGenLabel6" showColon="true" text="superficie" />
-            <Input type="Number" id="Superficie_input" placeholder="Enter e-mail" />
-
-            <Label id="_IDGenLabel7" showColon="true" text="etage" />
-            <Input type="Number" id="_IDGenInput1" placeholder="Enter e-mail" />
-
-            <Label id="_IDGenLabel8" showColon="true" text="Garage" />
-            <CheckBox id="_IDGenCheckBox3" text="Avec" selected="true" />
-
-            <Label id="_IDGenLabel9" showColon="true" text="Asc" />
-            <CheckBox id="_IDGenCheckBox2" text="Avec" selected="true" />
-
-            <Label id="_IDGenLabel10" showColon="true" text="Clima" />
-            <CheckBox id="_IDGenCheckBox1" text="Avec" selected="true" />
-
-            <Label id="_IDGenLabel11" showColon="true" text="prix" />
-
-            <Input type="Number" id="_IDGenInput5" placeholder="Enter e-mail" />
-
-            <Label id="_IDGenLabel12" showColon="true" text="Dispo" />
-            <CheckBox id="_IDGenCheckBox0" text="Avec" selected="true" />
+            <Panel id="_IDGenPanel3" headerText="Détails du bien">
+                <!-- <Label id="_IDGenLabel3" showColon="true" text="Nbr Pieces" /> -->
+                <Input type="Number" id="NbrPieces_input" placeholder="Nombre total de Piece" />
+                <Input type="Number" id="NbrChambres_input" placeholder="Nombre de chambre(s)" />
+                <Input type="Number" id="NbrSalleDeBains_input" placeholder="Nombre de salle(s) de bain" />
+                <Input type="Number" id="Superficie_input" placeholder="Superficie de l'appartement" />
+                <Input type="Number" id="_IDGenInput1" placeholder="Etage" />
+            </Panel>
+            <Panel id="_IDGenPanel9" headerText="Autres avantages">            
+                <CheckBox id="_IDGenCheckBox3" text="Avec Garage" selected="true" />
+                <CheckBox id="_IDGenCheckBox2" text="Avec Ascenseur" selected="true" />
+                <CheckBox id="_IDGenCheckBox1" text="Avec Climatisation" selected="true" /> 
+            </Panel>
+            
+            <Panel id="_IDGenPanel4" headerText="Disponibilité et Tarif">
+                <Label id="_IDGenLabel11" showColon="true" text="Prix/Nuitée en MAD" />
+                <Input type="Number" id="_IDGenInput5"  placeholder="Prix"/>
+                <CheckBox id="_IDGenCheckBox0" text="Disponible à partir du moment de l'enregistrement" selected="true" />
+            </Panel>
         </l:VerticalLayout>
         <buttons>
-            <Button id="_IDGenButton1" press=".handleSubmit" text="Add" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
-            <Button id="_IDGenButton2" press=".handleClose" text="Cancel" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+            <Button id="_IDGenButton1" press=".handleSubmit" type="Accept" icon="sap-icon://add" text="Add" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+            <Button id="_IDGenButton2" press=".handleClose" type="Reject" icon="sap-icon://undo" text="Cancel" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
         </buttons>
     </Dialog>
 </mvc:View>

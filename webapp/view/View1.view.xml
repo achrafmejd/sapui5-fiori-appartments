@@ -4,7 +4,7 @@
         <mvc:XMLView id="_IDGenXMLView1" viewName="appartments.view.CreateDialog" />
         <!-- Table -->
         <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
-            <Table id="idProducts" width="120%" items="{/APPARTMENTSHeadersSet}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster">
+            <Table id="idProducts" selectionChange="onRowSelection" width="120%" items="{/APPARTMENTSHeadersSet}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster">
                 <columns>
                     <Column id="Id">
                         <Text id="_IDGenText1" text="Identifiant" />
@@ -44,7 +44,7 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
+                    <ColumnListItem id="_IDGenColumnListItem1" press=".onRowPress">
                         <cells>
                             <Text id="_IDGenText13" text="{Identifiant}" />
                         </cells>
