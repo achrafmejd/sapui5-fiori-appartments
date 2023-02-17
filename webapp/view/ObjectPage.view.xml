@@ -12,7 +12,7 @@
 		<!-- this CSS class add a standard spacing to all the page content -->
 
 		<content>
-			<ObjectHeader id="_IDGenObjectHeader1"
+			<!-- <ObjectHeader id="_IDGenObjectHeader1"
 				title="{Name}"
 				backgroundDesign="Solid"
 				number="{
@@ -20,7 +20,7 @@
 					type: 'sap.ui.model.type.Currency',
 					formatOptions: {showMeasure: false}
 				}"
-				numberUnit="{CurrencyCode}" >
+				numberUnit="{CurrencyCode}" > -->
 				<!-- <attributes>
 					<ObjectAttribute id="_IDGenObjectAttribute1" title="Weight" text="{WeightMeasure} {WeightUnit}" />
 					<ObjectAttribute id="_IDGenObjectAttribute2" title="Dimensions" text="{Width} x {Depth} X {Height} {DimUnit}" />
@@ -28,7 +28,7 @@
 				<statuses>
 					<ObjectStatus id="_IDGenObjectStatus1" title="Status" text="In Stock" state="Success" />
 				</statuses> -->
-			</ObjectHeader>
+			<!-- </ObjectHeader> -->
 			<!-- <IconTabBar id="_IDGenIconTabBar1"
 				expanded="{device>/isNoPhone}"
 				class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">

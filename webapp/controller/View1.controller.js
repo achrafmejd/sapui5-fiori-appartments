@@ -9,7 +9,7 @@ sap.ui.define([
      */
     function (Controller) {
         "use strict";
-        
+
         return Controller.extend("appartments.controller.View1", {
             onInit: function () {
                 // this.onReadAll();
@@ -27,7 +27,7 @@ sap.ui.define([
                         console.log(oError);
                     }
                 });
-            
+
             },
             onReadFilters: function () {
                 const that = this
@@ -65,7 +65,7 @@ sap.ui.define([
                 const that = this
                 const oModel = this.getOwnerComponent().getModel();
                 oModel.read('/APPARTMENTSHeadersSet', {
-                    urlParameters: {$skip:0, $top:2},
+                    urlParameters: { $skip: 0, $top: 2 },
                     success: function (oData) {
                         console.log(oData);
                         const jModel = new sap.ui.model.json.JSONModel(oData);
@@ -74,7 +74,7 @@ sap.ui.define([
                     error: function (oError) {
                         console.log(oError);
                     }
-                })                
+                })
             },
             onReadyKey: function () {
                 // Working
@@ -84,29 +84,25 @@ sap.ui.define([
                     // urlParameters: {$skip:0, $top:2},
                     success: function (oData) {
                         console.log(oData);
-                        const jModel = new sap.ui.model.json.JSONModel({results:[oData]});
+                        const jModel = new sap.ui.model.json.JSONModel({ results: [oData] });
                         that.getView("idProducts").setModel(jModel);
                     },
                     error: function (oError) {
                         console.log(oError);
                     }
-                })                 
+                })
             },
-            onRowPress: function(oEvent) {
-                // var oSelectedItem = oEvent.getSource();
-                // var oContext = oSelectedItem.getBindingContext();
-                // var oData = oContext.getProperty(null, oContext);
-                console.log(oEvent); // log the selected row data
-              },
-              onRowSelection: function(oEvent) {
-                // var oSelectedItem = oEvent.getSource().getSelectedItem();
+            onRowSelection: function (oEvent) {
+                const oSelectedItem = oEvent.getSource().getSelectedItem();
                 console.log(oEvent.getSource().getSelectedItem().getBindingContext());
                 console.log(oEvent.getSource().getSelectedItem().getBindingContext().getProperty(null, oEvent.getSource().getSelectedItem().getBindingContext()));
-                // var oContext = oSelectedItem.getBindingContext();
-                // var oData = oContext.getProperty(null, oContext);
+                const oContext = oSelectedItem.getBindingContext();
+                const oData = oContext.getProperty(null, oContext);
                 // "oData" contains the row data
                 // Use it as per your requirement
-             }
-              
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("appartmentsDetails", { id: oData.Identifiant });
+            }
+
         });
     });
