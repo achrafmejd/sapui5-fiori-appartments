@@ -11,9 +11,9 @@
 		class= "sapUiResponsivePadding--header">
 
 		<Panel id="_IDGenPanel1" class="">
-			<Button type="Default" icon=""  class="" id="_edit" text="Edit" press="" />
+			<Button type="Default" icon=""  class="" id="_edit" text="Edit" press=".onOpenDialog" />
 			<Button type="Default" icon="" class=""  id="_reserver" text="Reserver" press="" />
-			<Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press="" />
+			<Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press=".onEdit" />
 			<Button type="Default" icon="" class=""  id="_delete" text="Delete" press=".onDelete" />
 		</Panel>
 
