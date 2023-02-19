@@ -9,13 +9,13 @@
 	<Page
 		id="idPage"
 		class= "sapUiResponsivePadding--header">
-
-		<Panel id="_IDGenPanel1" class="">
-			<Button type="Default" icon=""  class="" id="_edit" text="Edit" press=".onOpenDialog" />
-			<Button type="Default" icon="" class=""  id="_reserver" text="Reserver" press="" />
-			<Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press=".onEdit" />
-			<Button type="Default" icon="" class=""  id="_delete" text="Delete" press=".onDelete" />
-		</Panel>
+		
+		<FlexBox id="_IDGenFlexBox1" class="panel-button-container">
+			<Button type="Accept" icon="sap-icon://edit"  class="" id="_edit" text="Edit" press=".onOpenDialog" />
+			<Button type="Default" icon="sap-icon://add-coursebook" class=""  id="_reserver" text="Reserver" press="" />
+			<!-- <Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press=".onEdit" /> -->
+			<Button type="Reject" icon="sap-icon://sys-cancel-2" class=""  id="_delete" text="Delete" press=".onDelete" />	
+		</FlexBox>
 
 		<content>
 			<ObjectHeader id="_IDGenObjectHeader1"
@@ -28,18 +28,23 @@
 					formatOptions: {showMeasure: true}
 				}"
 				numberUnit="MAD" 
+				class=" "
                 >
 				<attributes>
-                
-					<ObjectAttribute id="_IDGenObjectAttribute1" title="Garage"  text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }" />
+					<ObjectAttribute id="_IDGenObjectAttribute11" />
+					<ObjectAttribute id="_IDGenObjectAttribute1" title="Garage" text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }"/>
                     <ObjectAttribute id="_IDGenObjectAttribute2" title="Ascenseur"  text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
-                    <ObjectAttribute id="_IDGenObjectAttribute3" title="Climatisation"  text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
-                   
-				</attributes>
+                    <ObjectAttribute id="_IDGenObjectAttribute3" title="Climatisation"   text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
+				</attributes> 
 				<statuses>
-					<ObjectStatus id="_IDGenObjectStatus1" title="Status" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" state="Success" />
+					<ObjectStatus id="_IDGenObjectStatus1"
+						class="sapUiSmallMarginBottom"
+						text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"
+						inverted="true"
+						icon="{= ${Disponible} === 'X' ? 'sap-icon://sys-enter-2' : 'sap-icon://error' }"
+						state="{= ${Disponible} === 'X' ? 'Success' : 'Error' }" />
+					<!-- <ObjectStatus id="_IDGenObjectStatus1" title="Status" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" state="Success" /> -->
 				</statuses>
-                
 			</ObjectHeader>
 			 <IconTabBar id="_IDGenIconTabBar1"
 				expanded="{device>/isNoPhone}"

@@ -1,4 +1,15 @@
 /* Enter your custom styles here */
 
 
+.panel-button-container{
+    display: flex;
+    justify-content: end;
+    background: white;
+    padding: 1%;
+    
+}
 
+.panel-button-container > *:nth-child(n) {
+    /* styles */
+    margin-left: 1%;
+}
