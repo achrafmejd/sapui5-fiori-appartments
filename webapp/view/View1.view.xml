@@ -19,7 +19,7 @@
                         <Text id="_IDGenText4" text="Nbr.Chambres" />
                     </Column>
                     <Column id="NbrSalleDeBains">
-                        <Text id="_IDGenText5" text="Salles de Bain" />
+                        <Text id="_IDGenText5" text="Salles de descriptionain" />
                     </Column>
                     <Column id="Superficie">
                         <Text id="_IDGenText6" text="Superficie" />
