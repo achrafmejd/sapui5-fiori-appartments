@@ -1,0 +1,6 @@
+<mvc:View controllerName="appartments.controller.ObjectControl" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:w="sap.ui.webc.main" xmlns:l="sap.ui.layout">
+    <!-- Create Button -->
+    <Button type="Default" icon="sap-icon://home" id="_create" text="Create" press=".handleOpen" />
+    <!-- OnClick : Dialog to display -->
+
+</mvc:View>
