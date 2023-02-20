@@ -1,6 +1,8 @@
 <mvc:View controllerName="appartments.controller.CreateDialog" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:w="sap.ui.webc.main" xmlns:l="sap.ui.layout">
     <!-- Create Button -->
-    <Button type="Default" icon="sap-icon://home" id="_create" text="Create" press=".handleOpen" />
+    <FlexBox id="_IDGenFlexBox1" class="_IDGenFlexBox1_container" >
+        <Button type="Default" icon="sap-icon://home" id="_create" text="Create" press=".handleOpen" />
+    </FlexBox>
     <!-- OnClick : Dialog to display -->
     <Dialog id="helloDialog" contentWidth="40%" title="APPARTEMENT" icon="sap-icon://home">
         <l:VerticalLayout id="_IDGenVerticalLayout1">
