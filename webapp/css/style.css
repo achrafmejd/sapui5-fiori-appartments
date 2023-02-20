@@ -13,3 +13,30 @@
     /* styles */
     margin-left: 1%;
 }
+
+._IDGenText13_id{
+    letter-spacing: 2px;
+    font-size: 13px;
+    -webkit-text-stroke: medium;
+}
+
+.hbox_padding{
+   padding: 1% 1% 1% 0%;
+   
+}
+
+.hbox_text{
+    margin-left: 8px;
+}
+
+.hbox_details{
+    /* border: 1px solid black; */
+}
+
+.hbox_details_element{
+    font-size: 6px;
+}
+
+.hbox_badge{
+    margin-right: 2px;
+}
