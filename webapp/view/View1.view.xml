@@ -10,13 +10,16 @@
                         <content>
                             <Title id="_IDGenTitle1" text="Appartements" level="H2" />
                             <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                            <ComboBox id="idPopinLayout" placeholder="Popin layout options" change="onPopinLayoutChanged">
-                                <items>
+                            <SearchField id="searchField" width="50%" placeholder="Search for..." enableSuggestions="true" search=".onSearch" suggest=".onSuggest" liveChange="onPopinLayoutChanged">
+                            <SuggestionItem id="_IDGenSuggestionItem1" text="Test" description="" key="" />
+                            </SearchField>
+                            <!-- <ComboBox id="idPopinLayout" placeholder="Search" change="onPopinLayoutChanged"> -->
+                                <!-- <items>
                                     <core:Item id="_IDGenItem1" text="Block" key="Block" />
                                     <core:Item id="_IDGenItem2" text="Grid Large" key="GridLarge" />
                                     <core:Item id="_IDGenItem3" text="Grid Small" key="GridSmall" />
-                                </items>
-                            </ComboBox>
+                                </items> -->
+                            <!-- </ComboBox> -->
                             <Label id="_IDGenLabel1" text="Sticky options:" />
                             <CheckBox id="_IDGenCheckBox1" text="ColumnHeaders" select="onSelect" />
                             <CheckBox id="_IDGenCheckBox2" text="HeaderToolbar" select="onSelect" />

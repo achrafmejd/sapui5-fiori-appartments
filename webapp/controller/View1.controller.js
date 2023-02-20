@@ -13,7 +13,7 @@ sap.ui.define([
         return Controller.extend("appartments.controller.View1", {
             onInit: function () {
                 this.onReadAll();
-                
+
             },
             onReadAll: function () {
                 const that = this;
@@ -105,6 +105,45 @@ sap.ui.define([
                 // Use it as per your requirement
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appartmentsDetails", { id: oData.Identifiant });
+            },
+            onPopinLayoutChanged: function (oEvent) {
+                // console.log("Ok");
+                var sSelectedValue = oEvent.getSource().getValue();
+                const oData = Object.values(this.getView("idProducts").getModel().oData)
+                // console.log(Object.values(oData));
+                const res = oData.filter((dt) => {
+                    const regex = new RegExp(`${sSelectedValue}`, "gi");
+                    return dt.Identifiant && dt.Identifiant.match(regex);
+                })
+
+                console.log(res);
+
+                // const oSearchView = this.getView().byId("searchField");
+                // res.forEach((item) => {
+                //     oSearchView.addSuggestionItem(new sap.m.SuggestionItem({
+                //         text: item
+                //     }));
+                // });
+
+                // const oSearchView = this.getView().byId("searchField");
+                // // Clear the suggestion items aggregation
+                // oSearchView.removeAllSuggestionItems();
+                // res.forEach((item) => {
+                //     oSearchView.addSuggestionItem(new sap.m.SuggestionItem({
+                //         text: item
+                //     }));
+                // });
+                const oSearchField = this.getView().byId("searchField");
+
+                res.forEach((oItem) => {
+                  const oSuggestionItem = new sap.m.SuggestionItem({
+                    text: oItem.Identifiant,
+                    key: oItem.Identifiant
+                  });
+              
+                  oSearchField.addSuggestionItem(oSuggestionItem);
+                });
+
             }
 
         });
