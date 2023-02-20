@@ -43,5 +43,8 @@
 
 
 ._IDGenFlexBox1_container{
-    background-color: brown;
+    background-color: white;
+    padding: 1%;
+    display: flex;
+    justify-content: flex-end;
 }

@@ -3,7 +3,7 @@
         <!-- CreateDialog View is Loaded Below -->
         <mvc:XMLView id="_IDGenXMLView1" viewName="appartments.view.CreateDialog" />
         <!-- Table -->
-        <!-- <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
+        <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
             <Table id="idProducts" selectionChange="onRowSelection" width="100%" items="{/APPARTMENTSHeadersSet}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster">
                 <headerToolbar>
                     <OverflowToolbar id="_IDGenOverflowToolbar1">
@@ -86,6 +86,6 @@
                     </ColumnListItem>
                 </items>
             </Table>
-        </ScrollContainer> -->
+        </ScrollContainer>
     </Page>
 </mvc:View>
