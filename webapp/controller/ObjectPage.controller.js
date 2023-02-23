@@ -28,17 +28,23 @@ sap.ui.define([
                             console.log(relativeReservations);
                             const oView = that.byId("_IDGenList1")
                             oView.setModel(new JSONModel(relativeReservations), "oListModel")
+                            const oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern: "dd.MM.YYYY"});
+
                             oView.bindAggregation("items", {
                                 path: "oListModel>/",
                                 template: new sap.m.StandardListItem({
                                     title: "{oListModel>IdReservation}",
-                                    // ... other bindings
+                                    description: {
+                                        parts: ["oListModel>DateDebut", "oListModel>DateFin"],
+                                        formatter: function(sDateDebut, sDateFin) {
+                                            var sFormattedDateDebut = oDateFormat.format(new Date(sDateDebut));
+                                            var sFormattedDateFin = oDateFormat.format(new Date(sDateFin));
+                                            return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
+                                        }
+                                    },
+                                    info: "Locataire : {oListModel>CinLocataire}"
                                 })
                             });
-                            // oView.bindElement({
-                            //     path:"oListModel>/"
-                            // })
-
                         }
                     })
                 },

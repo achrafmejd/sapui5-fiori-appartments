@@ -62,7 +62,13 @@
                     </IconTabFilter>
                     <IconTabFilter id="_IDGenIconTabFilter2" key="attachments" text="Reservations">
                         <List id="_IDGenList1" headerText="Liste des Réservations" items="{oListModel>/}" showSeparators="Inner">
-								<StandardListItem id="_IDGenStandardListItem1" title="{oListModel>IdReservation}" />
+								<StandardListItem 
+									id="_IDGenStandardListItem1"
+									icon="sap-icon://bbyd-active-sales"
+									title="{oListModel>IdReservation}"
+									description="{oListModel>DateDebut}"
+									info="{oListModel>CinLocataire}"
+									 />
                         </List>
                     </IconTabFilter>
                 </items>
