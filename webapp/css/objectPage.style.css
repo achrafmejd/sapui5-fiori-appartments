@@ -1,0 +1,29 @@
+.reservation-id {
+    color: black;
+    -webkit-text-stroke-width: medium;
+    letter-spacing: 2px;
+}
+
+.custom-list-item {
+    padding: 1%;
+}
+
+.custom-list-buttons-container {
+    /* padding: 2%; */
+    display: flex;
+    justify-content: space-between;
+    width: 6em;
+}
+
+.custom-list-date{
+    border-bottom: 3px solid #00a5e7;
+    padding: 0.2em;
+    margin-right: 1em;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.custom-list-locataire{
+    border-bottom: 3px solid #f53232;
+    padding: 0.2em
+}

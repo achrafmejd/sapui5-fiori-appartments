@@ -79,6 +79,9 @@
       "css": [
         {
           "uri": "css/style.css"
+        },
+        {
+          "uri": "css/objectPage.style.css"
         }
       ]
     },

@@ -39,7 +39,7 @@ sap.ui.define([
                                             items: [
                                                 new sap.m.Text({
                                                     text: "{oListModel>IdReservation} "
-                                                }),
+                                                }).addStyleClass("reservation-id"),
                                                 new sap.m.HBox({
                                                     items: [
                                                         new sap.m.Button({
@@ -55,7 +55,7 @@ sap.ui.define([
                                                             }
                                                         })
                                                     ]
-                                                })
+                                                }).addStyleClass('custom-list-buttons-container')
                                             ]
                                         }),
                                         new sap.m.Text({
@@ -67,14 +67,16 @@ sap.ui.define([
                                                     return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
                                                 }
                                             }
-                                        }),
+                                        }).addStyleClass('custom-list-date'),
                                         new sap.m.Text({
-                                            text: "{oListModel>CinLocataire}"
-                                        })
+                                            text: "Locataire : {oListModel>CinLocataire}"
+                                        }).addStyleClass('custom-list-locataire')
+                                        
+
                                     ],
                                     type: "Active",
                                     press: function() {} // empty press handler to make the item clickable
-                                })
+                                }).addStyleClass('custom-list-item')
                             });
                         }
                     })
