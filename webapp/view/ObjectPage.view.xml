@@ -2,7 +2,7 @@
     <Page id="idPage" class="sapUiResponsivePadding--header">
         <FlexBox id="_IDGenFlexBox1" class="panel-button-container">
             <Button type="Accept" icon="sap-icon://edit" class="" id="_edit" text="Edit" press=".onOpenDialog" />
-            <!-- <Button type="Default" icon="sap-icon://add-coursebook" class="" id="_reserver" text="Reserver" press="" /> -->
+            <Button type="Default" icon="sap-icon://add-coursebook" class="" id="_reserver" text="Reserver" press=".onBook" />
             <!-- <Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press=".onEdit" /> -->
             <Button type="Reject" icon="sap-icon://sys-cancel-2" class="" id="_delete" text="Delete" press=".onDelete" />
         </FlexBox>

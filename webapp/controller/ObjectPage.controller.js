@@ -308,6 +308,144 @@ sap.ui.define([
 
             });
             oDialog.open();
+        },
+        onBook:function(){
+            var oObjectHeader = this.getView();
+            var oObject = oObjectHeader.getBindingContext().getObject();
+            const oModel = this.getOwnerComponent().getModel();
+
+            console.log(oObject);
+            var oDialog = new sap.m.Dialog({
+                title: "RESERVER UN APPARTEMENT",
+                icon: "sap-icon://home",
+                contentWidth: "40%",
+                content: [
+                    new sap.m.Panel({
+                        headerText: "Informations sur Locataire",
+                        content: [
+                            new sap.m.Label({
+                                id: "_IDGenLabel11011",
+                                showColon: true,
+                                text: "CIN du Locataire"
+                            }),
+                            new sap.m.Input({
+                                id: "_IDCinLocataire",
+                                width: "100%",
+                                placeholder: "EX: BK681120..."
+                            })
+                        ]
+                    }),
+                    new sap.m.Panel({
+                        headerText: "Détails de la reservation",
+                        content: [
+                            new sap.m.Label({
+                                id: "_IDGenLabel11010",
+                                showColon: true,
+                                text: "ID de la Réservation"
+                            }),
+                            new sap.m.Input({
+                                id: "_IDReservation",
+                                placeholder: "Entrer ID de la Reservation"
+                            }),
+                            new sap.m.Label({
+                                id: "_IDGenLabel1101",
+                                showColon: true,
+                                text: "Date de début"
+                            }),
+                            new sap.m.Input({
+                                type: sap.m.InputType.Date,
+                                id: "DateDebut_input",
+                            }),
+                            new sap.m.Label({
+                                id: "_IDGenLabel1111",
+                                showColon: true,
+                                text: "Date de fin"
+                            }),
+                            new sap.m.Input({
+                                type: sap.m.InputType.Date,
+                                id: "DateFin_input",
+                            })
+                        ]
+                    })
+                ]
+                ,
+                beginButton: new sap.m.Button({
+                    text: "Edit",
+                    type: "Accept",
+                    icon:"sap-icon://add",
+                    press: function () {
+
+                        
+                            // Retrieve all the input values
+                            var cinLocataire = sap.ui.getCore().byId("_IDCinLocataire").getValue();
+                            var dateDebut = sap.ui.getCore().byId("DateDebut_input").getValue();
+                            var dateFin = sap.ui.getCore().byId("DateFin_input").getValue();
+                            var idReservation = sap.ui.getCore().byId("_IDReservation").getValue();
+                            
+                            
+
+                            const uEntry = {
+                                "IdReservation" : idReservation,
+                                "CinLocataire" : cinLocataire,
+                                "DateDebut" : new Date(dateDebut),
+                                "DateFin" : new Date(dateFin),
+                                "IdAppartement" : oObject.Identifiant.toUpperCase()
+                            }
+
+                            console.log(uEntry);
+
+                            // Perform any necessary actions with the retrieved values here...
+                            oModel.create(`/RESERVATIONSHeadersSet`, uEntry, null, {
+                                success: function(res){
+                                    console.log("Result from : ", res);
+                                    // Print the document
+                                    
+                                },
+                                error: function(oError){
+                                    console.log(oError);
+                                    oDialog.close();
+                                    oDialog.destroyContent();
+                                }
+                            })
+                            oDialog.destroyContent();
+                            //     success: function(){
+                            //         oModel.read(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, {
+                            //             success: function(oData){
+                            //                 const jModel = new sap.ui.model.json.JSONModel(oData);
+                            //                 that.getView().setModel(jModel);
+                            //                 // Update the object page with the new data
+                            //                 // this.onInit();
+                            //             },
+                            //             error: function(oErr){
+                            //                 console.log(oErr);
+                            //             }
+                            //         });
+                            //     },
+                            //     error:function(oErr){
+                            //         console.log(oErr);
+                            //     }
+                            // })
+                            // Close and destroy the dialog content
+                        //     oDialog.close();
+                        //     oDialog.destroyContent();
+                        
+                        // oDialog.close();
+                        // oDialog.destroyContent();
+                    }
+                }),
+                endButton: new sap.m.Button({
+                    text: "Cancel",
+                    type: "Reject",
+                    icon:"sap-icon://undo",
+                    press: function() {
+                      // handle button press event...
+                      oDialog.close();
+                      oDialog.destroyContent();
+                    }
+                  })
+
+            });
+            oDialog.open();
         }
     });
 
