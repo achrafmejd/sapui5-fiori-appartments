@@ -1,88 +1,72 @@
-<mvc:View
-	height="100%"
-	controllerName="appartments.controller.ObjectPage"
-	xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-    xmlns:w="sap.ui.webc.main"
-	xmlns="sap.m">
-	<Page
-		id="idPage"
-		class= "sapUiResponsivePadding--header">
-		
-		<FlexBox id="_IDGenFlexBox1" class="panel-button-container">
-			<Button type="Accept" icon="sap-icon://edit"  class="" id="_edit" text="Edit" press=".onOpenDialog" />
-			<Button type="Default" icon="sap-icon://add-coursebook" class=""  id="_reserver" text="Reserver" press="" />
-			<!-- <Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press=".onEdit" /> -->
-			<Button type="Reject" icon="sap-icon://sys-cancel-2" class=""  id="_delete" text="Delete" press=".onDelete" />	
-		</FlexBox>
+<mvc:View height="100%" controllerName="appartments.controller.ObjectPage" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:w="sap.ui.webc.main" xmlns="sap.m">
+    <Page id="idPage" class="sapUiResponsivePadding--header">
+        <FlexBox id="_IDGenFlexBox1" class="panel-button-container">
+            <Button type="Accept" icon="sap-icon://edit" class="" id="_edit" text="Edit" press=".onOpenDialog" />
+            <!-- <Button type="Default" icon="sap-icon://add-coursebook" class="" id="_reserver" text="Reserver" press="" /> -->
+            <!-- <Button type="Default" icon="" class=""  id="_annuler" text="Annuler Reservation" press=".onEdit" /> -->
+            <Button type="Reject" icon="sap-icon://sys-cancel-2" class="" id="_delete" text="Delete" press=".onDelete" />
+        </FlexBox>
 
-		<content>
-			<ObjectHeader id="_IDGenObjectHeader1"
-				title="{Identifiant}" 
-				backgroundDesign="Solid"
-				number="{
+        <content>
+            <ObjectHeader
+                id="_IDGenObjectHeader1"
+                title="{Identifiant}"
+                backgroundDesign="Solid"
+                number="{
 					parts:[{path:'PrixNuitee'},{path:'CurrencyCode'}],
 					type: 'sap.ui.model.type.Currency',
                     formatter: '.formatPrice',
 					formatOptions: {showMeasure: true}
 				}"
-				numberUnit="MAD" 
-				class=" "
-                >
-				<attributes>
-					<ObjectAttribute id="_IDGenObjectAttribute11" />
-					<ObjectAttribute id="_IDGenObjectAttribute1" title="Garage" text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }"/>
-                    <ObjectAttribute id="_IDGenObjectAttribute2" title="Ascenseur"  text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
-                    <ObjectAttribute id="_IDGenObjectAttribute3" title="Climatisation"   text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
-				</attributes> 
-				<statuses>
-					<ObjectStatus id="_IDGenObjectStatus1"
-						class="sapUiSmallMarginBottom"
-						text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"
-						inverted="true"
-						icon="{= ${Disponible} === 'X' ? 'sap-icon://sys-enter-2' : 'sap-icon://error' }"
-						state="{= ${Disponible} === 'X' ? 'Success' : 'Error' }" />
-					<!-- <ObjectStatus id="_IDGenObjectStatus1" title="Status" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" state="Success" /> -->
-				</statuses>
-			</ObjectHeader>
-			 <IconTabBar id="_IDGenIconTabBar1"
-				expanded="{device>/isNoPhone}"
-				class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
-				<items>
-					<IconTabFilter id="_IDGenIconTabFilter1"
-						key="info"
-						text="Info">
-						<f:SimpleForm id="_IDGenSimpleForm1"
-							minWidth="1024"
-							maxContainerCols="2"
-							layout="ResponsiveGridLayout" >
-							<f:title>
-								<core:Title id="_IDGenTitle1" text="Informations Générales" />
-							</f:title>
-                            <Label id="_IDGenLabel6" text="Adresse"/>
-							<Text id="_IDGenText6" text="{Description}"/>
-							<Label id="_IDGenLabel1" text="Nombre de Pieces"/>
-							<Text id="_IDGenText1" text="{NbrPieces}"/>
-                            <Label id="_IDGenLabel2" text="Nombre de Chambres"/>
-							<Text id="_IDGenText2" text="{NbrChambres}"/>
-                            <Label id="_IDGenLabel3" text="Nombre de Salles de Bain"/>
-							<Text id="_IDGenText3" text="{NbrSalleDeBains}"/>
-                            <Label id="_IDGenLabel4" text="Superficie"/>
-							<Text id="_IDGenText4" text="{Superficie} m²"/>
-                            <Label id="_IDGenLabel5" text="Etage"/>
-							<Text id="_IDGenText5" text="{Etage}"/>
-						</f:SimpleForm>
-					</IconTabFilter>
-					<IconTabFilter id="_IDGenIconTabFilter2"
-						key="attachments"
-						text="Reservations">
-						<List id="_IDGenList1" headerText="A List" showSeparators="Inner" >
-						</List>
-					</IconTabFilter>
-				</items>
-			</IconTabBar>
-		</content>
-
-	</Page>
+                numberUnit="MAD"
+                class=" "
+            >
+                <attributes>
+                    <ObjectAttribute id="_IDGenObjectAttribute11" />
+                    <ObjectAttribute id="_IDGenObjectAttribute1" title="Garage" text="{= ${Garage} === 'X' ? 'Avec' : 'Sans' }" />
+                    <ObjectAttribute id="_IDGenObjectAttribute2" title="Ascenseur" text="{= ${Ascenseur} === 'X' ? 'Avec' : 'Sans' }" />
+                    <ObjectAttribute id="_IDGenObjectAttribute3" title="Climatisation" text="{= ${Climatisation} === 'X' ? 'Avec' : 'Sans' }" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus
+                        id="_IDGenObjectStatus1"
+                        class="sapUiSmallMarginBottom"
+                        text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }"
+                        inverted="true"
+                        icon="{= ${Disponible} === 'X' ? 'sap-icon://sys-enter-2' : 'sap-icon://error' }"
+                        state="{= ${Disponible} === 'X' ? 'Success' : 'Error' }"
+                    />
+                    <!-- <ObjectStatus id="_IDGenObjectStatus1" title="Status" text="{= ${Disponible} === 'X' ? 'Disponible' : 'Indisponible' }" state="Success" /> -->
+                </statuses>
+            </ObjectHeader>
+            <IconTabBar id="_IDGenIconTabBar1" expanded="{device>/isNoPhone}" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter id="_IDGenIconTabFilter1" key="info" text="Info">
+                        <f:SimpleForm id="_IDGenSimpleForm1" minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout">
+                            <f:title>
+                                <core:Title id="_IDGenTitle1" text="Informations Générales" />
+                            </f:title>
+                            <Label id="_IDGenLabel6" text="Adresse" />
+                            <Text id="_IDGenText6" text="{Description}" />
+                            <Label id="_IDGenLabel1" text="Nombre de Pieces" />
+                            <Text id="_IDGenText1" text="{NbrPieces}" />
+                            <Label id="_IDGenLabel2" text="Nombre de Chambres" />
+                            <Text id="_IDGenText2" text="{NbrChambres}" />
+                            <Label id="_IDGenLabel3" text="Nombre de Salles de Bain" />
+                            <Text id="_IDGenText3" text="{NbrSalleDeBains}" />
+                            <Label id="_IDGenLabel4" text="Superficie" />
+                            <Text id="_IDGenText4" text="{Superficie} m²" />
+                            <Label id="_IDGenLabel5" text="Etage" />
+                            <Text id="_IDGenText5" text="{Etage}" />
+                        </f:SimpleForm>
+                    </IconTabFilter>
+                    <IconTabFilter id="_IDGenIconTabFilter2" key="attachments" text="Reservations">
+                        <List id="_IDGenList1" headerText="Liste des Réservations" items="{oListModel>/}" showSeparators="Inner">
+								<StandardListItem id="_IDGenStandardListItem1" title="{oListModel>IdReservation}" />
+                        </List>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
 </mvc:View>

@@ -16,11 +16,31 @@ sap.ui.define([
             oModel.read(`/APPARTMENTSHeadersSet('${sItemId}')`, {
                 success: function (oData) {
                     console.log(oData);
+                    // Set the Data to the view
                     const jModel = new sap.ui.model.json.JSONModel(oData);
                     that.getView().setModel(jModel);
                     that.getView().bindElement({
                         path: "/"
                     });
+                    oModel.read(`/RESERVATIONSHeadersSet`, {
+                        success: function(oReservations){
+                            const relativeReservations = oReservations.results.filter(r=>r.IdAppartement == sItemId.toUpperCase())
+                            console.log(relativeReservations);
+                            const oView = that.byId("_IDGenList1")
+                            oView.setModel(new JSONModel(relativeReservations), "oListModel")
+                            oView.bindAggregation("items", {
+                                path: "oListModel>/",
+                                template: new sap.m.StandardListItem({
+                                    title: "{oListModel>IdReservation}",
+                                    // ... other bindings
+                                })
+                            });
+                            // oView.bindElement({
+                            //     path:"oListModel>/"
+                            // })
+
+                        }
+                    })
                 },
                 error: function (oError) {
                     console.log(oError);
