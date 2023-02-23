@@ -32,17 +32,48 @@ sap.ui.define([
 
                             oView.bindAggregation("items", {
                                 path: "oListModel>/",
-                                template: new sap.m.StandardListItem({
-                                    title: "{oListModel>IdReservation}",
-                                    description: {
-                                        parts: ["oListModel>DateDebut", "oListModel>DateFin"],
-                                        formatter: function(sDateDebut, sDateFin) {
-                                            var sFormattedDateDebut = oDateFormat.format(new Date(sDateDebut));
-                                            var sFormattedDateFin = oDateFormat.format(new Date(sDateFin));
-                                            return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
-                                        }
-                                    },
-                                    info: "Locataire : {oListModel>CinLocataire}"
+                                template: new sap.m.CustomListItem({
+                                    content: [
+                                        new sap.m.HBox({
+                                            justifyContent: "SpaceBetween",
+                                            items: [
+                                                new sap.m.Text({
+                                                    text: "{oListModel>IdReservation} "
+                                                }),
+                                                new sap.m.HBox({
+                                                    items: [
+                                                        new sap.m.Button({
+                                                            text: "Edit",
+                                                            press: function(oEvent) {
+                                                                // Handle edit button press here
+                                                            }
+                                                        }),
+                                                        new sap.m.Button({
+                                                            text: "Delete",
+                                                            press: function(oEvent) {
+                                                                // Handle delete button press here
+                                                            }
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        }),
+                                        new sap.m.Text({
+                                            text: {
+                                                parts: ["oListModel>DateDebut", "oListModel>DateFin"],
+                                                formatter: function(sDateDebut, sDateFin) {
+                                                    var sFormattedDateDebut = oDateFormat.format(new Date(sDateDebut));
+                                                    var sFormattedDateFin = oDateFormat.format(new Date(sDateFin));
+                                                    return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
+                                                }
+                                            }
+                                        }),
+                                        new sap.m.Text({
+                                            text: "{oListModel>CinLocataire}"
+                                        })
+                                    ],
+                                    type: "Active",
+                                    press: function() {} // empty press handler to make the item clickable
                                 })
                             });
                         }

@@ -69,6 +69,7 @@
 									description="{oListModel>DateDebut}"
 									info="{oListModel>CinLocataire}"
 									 />
+								
                         </List>
                     </IconTabFilter>
                 </items>
