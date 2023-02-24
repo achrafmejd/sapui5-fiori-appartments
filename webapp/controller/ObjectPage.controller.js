@@ -23,12 +23,12 @@ sap.ui.define([
                         path: "/"
                     });
                     oModel.read(`/RESERVATIONSHeadersSet`, {
-                        success: function(oReservations){
-                            const relativeReservations = oReservations.results.filter(r=>r.IdAppartement == sItemId.toUpperCase())
+                        success: function (oReservations) {
+                            const relativeReservations = oReservations.results.filter(r => r.IdAppartement == sItemId.toUpperCase())
                             console.log(relativeReservations);
                             const oView = that.byId("_IDGenList1")
                             oView.setModel(new JSONModel(relativeReservations), "oListModel")
-                            const oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern: "dd.MM.YYYY"});
+                            const oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({ pattern: "dd.MM.YYYY" });
 
                             oView.bindAggregation("items", {
                                 path: "oListModel>/",
@@ -43,15 +43,16 @@ sap.ui.define([
                                                 new sap.m.HBox({
                                                     items: [
                                                         new sap.m.Button({
-                                                            text: "Edit",
-                                                            press: function(oEvent) {
-                                                                // Handle edit button press here
+                                                            text: "Print",
+                                                            press: function (oEvent) {
+                                                                // Print the details related to the Reservation
                                                             }
                                                         }),
                                                         new sap.m.Button({
-                                                            text: "Delete",
-                                                            press: function(oEvent) {
-                                                                // Handle delete button press here
+                                                            text: "Abort",
+                                                            press: function (oEvent) {
+                                                                // Stop the reservation => Change the end date to today => print a doc
+
                                                             }
                                                         })
                                                     ]
@@ -61,7 +62,7 @@ sap.ui.define([
                                         new sap.m.Text({
                                             text: {
                                                 parts: ["oListModel>DateDebut", "oListModel>DateFin"],
-                                                formatter: function(sDateDebut, sDateFin) {
+                                                formatter: function (sDateDebut, sDateFin) {
                                                     var sFormattedDateDebut = oDateFormat.format(new Date(sDateDebut));
                                                     var sFormattedDateFin = oDateFormat.format(new Date(sDateFin));
                                                     return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
@@ -71,11 +72,11 @@ sap.ui.define([
                                         new sap.m.Text({
                                             text: "Locataire : {oListModel>CinLocataire}"
                                         }).addStyleClass('custom-list-locataire')
-                                        
+
 
                                     ],
                                     type: "Active",
-                                    press: function() {} // empty press handler to make the item clickable
+                                    press: function () { } // empty press handler to make the item clickable
                                 }).addStyleClass('custom-list-item')
                             });
                         }
@@ -238,59 +239,59 @@ sap.ui.define([
                 beginButton: new sap.m.Button({
                     text: "Edit",
                     type: "Accept",
-                    icon:"sap-icon://add",
+                    icon: "sap-icon://add",
                     press: function () {
-                        
-                            // Retrieve all the input values
-                            var description = sap.ui.getCore().byId("Description").getValue();
-                            var nbrPieces = sap.ui.getCore().byId("NbrPieces_input").getValue();
-                            var nbrChambres = sap.ui.getCore().byId("NbrChambres_input").getValue();
-                            var nbrSalleDeBains = sap.ui.getCore().byId("NbrSalleDeBains_input").getValue();
-                            var superficie = sap.ui.getCore().byId("Superficie_input").getValue();
-                            var etage = sap.ui.getCore().byId("_IDGenInput1").getValue();
-                            var garage = sap.ui.getCore().byId("_IDGenCheckBox3").getSelected() ? "X" : "";
-                            var ascenseur = sap.ui.getCore().byId("_IDGenCheckBox2").getSelected() ? "X" : "";
-                            var climatisation = sap.ui.getCore().byId("_IDGenCheckBox1").getSelected() ? "X" : "";
-                            var prixNuitee = sap.ui.getCore().byId("_IDGenInput5").getValue();
 
-                            const uEntry = {
-                                "Description" : description,
-                                "NbrPieces" : nbrPieces,
-                                "NbrChambres" : nbrChambres,
-                                "NbrSalleDeBains" : nbrSalleDeBains,
-                                "Superficie" : superficie,
-                                "Etage" : etage,
-                                "Garage" : garage,
-                                "Ascenseur" : ascenseur,
-                                "Climatisation" : climatisation,
-                                "PrixNuitee" : prixNuitee,
-                                // This below is not edited here
-                                "Disponible" : oObject.Disponible
+                        // Retrieve all the input values
+                        var description = sap.ui.getCore().byId("Description").getValue();
+                        var nbrPieces = sap.ui.getCore().byId("NbrPieces_input").getValue();
+                        var nbrChambres = sap.ui.getCore().byId("NbrChambres_input").getValue();
+                        var nbrSalleDeBains = sap.ui.getCore().byId("NbrSalleDeBains_input").getValue();
+                        var superficie = sap.ui.getCore().byId("Superficie_input").getValue();
+                        var etage = sap.ui.getCore().byId("_IDGenInput1").getValue();
+                        var garage = sap.ui.getCore().byId("_IDGenCheckBox3").getSelected() ? "X" : "";
+                        var ascenseur = sap.ui.getCore().byId("_IDGenCheckBox2").getSelected() ? "X" : "";
+                        var climatisation = sap.ui.getCore().byId("_IDGenCheckBox1").getSelected() ? "X" : "";
+                        var prixNuitee = sap.ui.getCore().byId("_IDGenInput5").getValue();
+
+                        const uEntry = {
+                            "Description": description,
+                            "NbrPieces": nbrPieces,
+                            "NbrChambres": nbrChambres,
+                            "NbrSalleDeBains": nbrSalleDeBains,
+                            "Superficie": superficie,
+                            "Etage": etage,
+                            "Garage": garage,
+                            "Ascenseur": ascenseur,
+                            "Climatisation": climatisation,
+                            "PrixNuitee": prixNuitee,
+                            // This below is not edited here
+                            "Disponible": oObject.Disponible
+                        }
+
+                        // Perform any necessary actions with the retrieved values here...
+                        oModel.update(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, uEntry, {
+                            success: function () {
+                                oModel.read(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, {
+                                    success: function (oData) {
+                                        const jModel = new sap.ui.model.json.JSONModel(oData);
+                                        that.getView().setModel(jModel);
+                                        // Update the object page with the new data
+                                        // this.onInit();
+                                    },
+                                    error: function (oErr) {
+                                        console.log(oErr);
+                                    }
+                                });
+                            },
+                            error: function (oErr) {
+                                console.log(oErr);
                             }
+                        })
+                        // Close and destroy the dialog content
+                        oDialog.close();
+                        oDialog.destroyContent();
 
-                            // Perform any necessary actions with the retrieved values here...
-                            oModel.update(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, uEntry, {
-                                success: function(){
-                                    oModel.read(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, {
-                                        success: function(oData){
-                                            const jModel = new sap.ui.model.json.JSONModel(oData);
-                                            that.getView().setModel(jModel);
-                                            // Update the object page with the new data
-                                            // this.onInit();
-                                        },
-                                        error: function(oErr){
-                                            console.log(oErr);
-                                        }
-                                    });
-                                },
-                                error:function(oErr){
-                                    console.log(oErr);
-                                }
-                            })
-                            // Close and destroy the dialog content
-                            oDialog.close();
-                            oDialog.destroyContent();
-                        
                         oDialog.close();
                         oDialog.destroyContent();
                     }
@@ -298,23 +299,27 @@ sap.ui.define([
                 endButton: new sap.m.Button({
                     text: "Cancel",
                     type: "Reject",
-                    icon:"sap-icon://undo",
-                    press: function() {
-                      // handle button press event...
-                      oDialog.close();
-                      oDialog.destroyContent();
+                    icon: "sap-icon://undo",
+                    press: function () {
+                        // handle button press event...
+                        oDialog.close();
+                        oDialog.destroyContent();
                     }
-                  })
+                })
 
             });
             oDialog.open();
         },
-        onBook:function(){
+        onBook: function () {
+            /* Function : Create Reservation */
+            const that = this;
+            /* Get the Main Object which is the Appartment */
             var oObjectHeader = this.getView();
             var oObject = oObjectHeader.getBindingContext().getObject();
-            const oModel = this.getOwnerComponent().getModel();
-
             console.log(oObject);
+            /* Create a Model */
+            const oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZGW_AME_APPARTMENTS_SRV/");
+            /* Create a Dialog to Create reservation */
             var oDialog = new sap.m.Dialog({
                 title: "RESERVER UN APPARTEMENT",
                 icon: "sap-icon://home",
@@ -367,82 +372,73 @@ sap.ui.define([
                             })
                         ]
                     })
-                ]
-                ,
+                ],
                 beginButton: new sap.m.Button({
                     text: "Edit",
                     type: "Accept",
-                    icon:"sap-icon://add",
+                    icon: "sap-icon://add",
                     press: function () {
+                        // Retrieve all the input values
+                        var cinLocataire = sap.ui.getCore().byId("_IDCinLocataire").getValue();
+                        var dateDebut = sap.ui.getCore().byId("DateDebut_input").getValue();
+                        var dateFin = sap.ui.getCore().byId("DateFin_input").getValue();
+                        var idReservation = sap.ui.getCore().byId("_IDReservation").getValue();
 
-                        
-                            // Retrieve all the input values
-                            var cinLocataire = sap.ui.getCore().byId("_IDCinLocataire").getValue();
-                            var dateDebut = sap.ui.getCore().byId("DateDebut_input").getValue();
-                            var dateFin = sap.ui.getCore().byId("DateFin_input").getValue();
-                            var idReservation = sap.ui.getCore().byId("_IDReservation").getValue();
-                            
-                            
+                        const uEntry = {
+                            "IdReservation": idReservation,
+                            "CinLocataire": cinLocataire,
+                            "DateDebut": new Date(dateDebut),
+                            "DateFin": new Date(dateFin),
+                            "IdAppartement": oObject.Identifiant.toUpperCase()
+                        }
+                        // Perform any necessary actions with the retrieved values here...
+                        oModel.create(`/RESERVATIONSHeadersSet`, uEntry, {
+                            success: function () {
+                                // Update the Appartment disponible field to indisponible
+                                oObject.Disponible = '';
+                                console.log("After edit ", oObject);
+                                oModel.update(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, oObject, {
+                                    success: function () {
+                                        console.log("App modified");
+                                        // log
+                                        // that.getView().setModel(oObject);
+                                        // that.getView().bindElement({
+                                        //     path: "/"
+                                        // });
+                                        console.log("Model", that.getOwnerComponent().getModel());
+                                        // const jModel = new sap.ui.model.json.JSONModel(oData);
+                                        that.getView().setModel(new sap.ui.model.json.JSONModel(oObject));
 
-                            const uEntry = {
-                                "IdReservation" : idReservation,
-                                "CinLocataire" : cinLocataire,
-                                "DateDebut" : new Date(dateDebut),
-                                "DateFin" : new Date(dateFin),
-                                "IdAppartement" : oObject.Identifiant.toUpperCase()
+                                    },
+                                    error: function () {
+                                        console.log("Error in edit App");
+                                    }
+                                })
+                                // Update the Reservations
+                                console.log("Success");
+                            },
+                            error: function (oError) {
+                                console.log("Error : ", oError);
+                                oDialog.destroyContent()
+                                oDialog.close()
                             }
+                        })
 
-                            console.log(uEntry);
 
-                            // Perform any necessary actions with the retrieved values here...
-                            oModel.create(`/RESERVATIONSHeadersSet`, uEntry, null, {
-                                success: function(res){
-                                    console.log("Result from : ", res);
-                                    // Print the document
-                                    
-                                },
-                                error: function(oError){
-                                    console.log(oError);
-                                    oDialog.close();
-                                    oDialog.destroyContent();
-                                }
-                            })
-                            oDialog.destroyContent();
-                            //     success: function(){
-                            //         oModel.read(`/APPARTMENTSHeadersSet('${oObject.Identifiant}')`, {
-                            //             success: function(oData){
-                            //                 const jModel = new sap.ui.model.json.JSONModel(oData);
-                            //                 that.getView().setModel(jModel);
-                            //                 // Update the object page with the new data
-                            //                 // this.onInit();
-                            //             },
-                            //             error: function(oErr){
-                            //                 console.log(oErr);
-                            //             }
-                            //         });
-                            //     },
-                            //     error:function(oErr){
-                            //         console.log(oErr);
-                            //     }
-                            // })
-                            // Close and destroy the dialog content
-                        //     oDialog.close();
-                        //     oDialog.destroyContent();
-                        
-                        // oDialog.close();
-                        // oDialog.destroyContent();
+                        oDialog.destroyContent();
+                        oDialog.close()
                     }
                 }),
                 endButton: new sap.m.Button({
                     text: "Cancel",
                     type: "Reject",
-                    icon:"sap-icon://undo",
-                    press: function() {
-                      // handle button press event...
-                      oDialog.close();
-                      oDialog.destroyContent();
+                    icon: "sap-icon://undo",
+                    press: function () {
+                        // handle button press event...
+                        oDialog.close();
+                        oDialog.destroyContent();
                     }
-                  })
+                })
 
             });
             oDialog.open();
