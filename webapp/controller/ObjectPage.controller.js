@@ -23,62 +23,8 @@ sap.ui.define([
                         path: "/"
                     });
                     oModel.read(`/RESERVATIONSHeadersSet`, {
-                        success: function (oReservations) {
-                            const relativeReservations = oReservations.results.filter(r => r.IdAppartement == sItemId.toUpperCase())
-                            console.log(relativeReservations);
-                            const oView = that.byId("_IDGenList1")
-                            oView.setModel(new JSONModel(relativeReservations), "oListModel")
-                            const oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({ pattern: "dd.MM.YYYY" });
-
-                            oView.bindAggregation("items", {
-                                path: "oListModel>/",
-                                template: new sap.m.CustomListItem({
-                                    content: [
-                                        new sap.m.HBox({
-                                            justifyContent: "SpaceBetween",
-                                            items: [
-                                                new sap.m.Text({
-                                                    text: "{oListModel>IdReservation} "
-                                                }).addStyleClass("reservation-id"),
-                                                new sap.m.HBox({
-                                                    items: [
-                                                        new sap.m.Button({
-                                                            text: "Print",
-                                                            press: function (oEvent) {
-                                                                // Print the details related to the Reservation
-                                                            }
-                                                        }),
-                                                        new sap.m.Button({
-                                                            text: "Abort",
-                                                            press: function (oEvent) {
-                                                                // Stop the reservation => Change the end date to today => print a doc
-
-                                                            }
-                                                        })
-                                                    ]
-                                                }).addStyleClass('custom-list-buttons-container')
-                                            ]
-                                        }),
-                                        new sap.m.Text({
-                                            text: {
-                                                parts: ["oListModel>DateDebut", "oListModel>DateFin"],
-                                                formatter: function (sDateDebut, sDateFin) {
-                                                    var sFormattedDateDebut = oDateFormat.format(new Date(sDateDebut));
-                                                    var sFormattedDateFin = oDateFormat.format(new Date(sDateFin));
-                                                    return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
-                                                }
-                                            }
-                                        }).addStyleClass('custom-list-date'),
-                                        new sap.m.Text({
-                                            text: "Locataire : {oListModel>CinLocataire}"
-                                        }).addStyleClass('custom-list-locataire')
-
-
-                                    ],
-                                    type: "Active",
-                                    press: function () { } // empty press handler to make the item clickable
-                                }).addStyleClass('custom-list-item')
-                            });
+                        success: function(oData){
+                            that.onUpdateReservation(oData, sItemId, that)
                         }
                     })
                 },
@@ -392,11 +338,6 @@ sap.ui.define([
                             "IdAppartement": oObject.Identifiant.toUpperCase()
                         }
                         // Perform any necessary actions with the retrieved values here...
-                        // console.log(that.byId("_IDGenList1").getModel().refresh());
-
-                        // testing();
-                        // that.testing();
-                        
                         oModel.create(`/RESERVATIONSHeadersSet`, uEntry, {
                             success: function () {
                                 // Update the Appartment disponible field to indisponible;
@@ -413,66 +354,7 @@ sap.ui.define([
                                 })
                                 // Update the Reservations
                                 oModel.read(`/RESERVATIONSHeadersSet`, {
-                                    // success: function (oReservations) {
-                                    //     console.log("Hana awtani", oReservations);
-                                    //     const relativeReservations = oReservations.results.filter(r => r.IdAppartement == oObject.Identifiant.toUpperCase())
-                                    //     console.log(relativeReservations);
-                                    //     const oView = that.byId("_IDGenList1")
-                                    //     oView.setModel(new JSONModel(relativeReservations), "oListModel")
-                                    //     const oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({ pattern: "dd.MM.YYYY" });
-            
-                                    //     oView.bindAggregation("items", {
-                                    //         path: "oListModel>/",
-                                    //         template: new sap.m.CustomListItem({
-                                    //             content: [
-                                    //                 new sap.m.HBox({
-                                    //                     justifyContent: "SpaceBetween",
-                                    //                     items: [
-                                    //                         new sap.m.Text({
-                                    //                             text: "{oListModel>IdReservation} "
-                                    //                         }).addStyleClass("reservation-id"),
-                                    //                         new sap.m.HBox({
-                                    //                             items: [
-                                    //                                 new sap.m.Button({
-                                    //                                     text: "Print",
-                                    //                                     press: function (oEvent) {
-                                    //                                         // Print the details related to the Reservation
-                                    //                                     }
-                                    //                                 }),
-                                    //                                 new sap.m.Button({
-                                    //                                     text: "Abort",
-                                    //                                     press: function (oEvent) {
-                                    //                                         // Stop the reservation => Change the end date to today => print a doc
-            
-                                    //                                     }
-                                    //                                 })
-                                    //                             ]
-                                    //                         }).addStyleClass('custom-list-buttons-container')
-                                    //                     ]
-                                    //                 }),
-                                    //                 new sap.m.Text({
-                                    //                     text: {
-                                    //                         parts: ["oListModel>DateDebut", "oListModel>DateFin"],
-                                    //                         formatter: function (sDateDebut, sDateFin) {
-                                    //                             var sFormattedDateDebut = oDateFormat.format(new Date(sDateDebut));
-                                    //                             var sFormattedDateFin = oDateFormat.format(new Date(sDateFin));
-                                    //                             return "A partir du : " + sFormattedDateDebut + " - Jusqu'au : " + sFormattedDateFin;
-                                    //                         }
-                                    //                     }
-                                    //                 }).addStyleClass('custom-list-date'),
-                                    //                 new sap.m.Text({
-                                    //                     text: "Locataire : {oListModel>CinLocataire}"
-                                    //                 }).addStyleClass('custom-list-locataire')
-            
-            
-                                    //             ],
-                                    //             type: "Active",
-                                    //             press: function () { } // empty press handler to make the item clickable
-                                    //         }).addStyleClass('custom-list-item')
-                                    //     });
-                                    // },
                                     success: function(oData){
-                                        that.testing();
                                         that.onUpdateReservation(oData, oObject.Identifiant, that)
                                     },
                                     error:function(oErr){
@@ -563,9 +445,6 @@ sap.ui.define([
                     press: function () { } // empty press handler to make the item clickable
                 }).addStyleClass('custom-list-item')
             });
-        },
-        testing:function(){
-            alert("Hello")
         }
     });
 
