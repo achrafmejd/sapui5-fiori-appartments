@@ -23,7 +23,7 @@ sap.ui.define([
                         path: "/"
                     });
                     oModel.read(`/RESERVATIONSHeadersSet`, {
-                        success: function(oData){
+                        success: function (oData) {
                             that.onUpdateReservation(oData, sItemId, that)
                         }
                     })
@@ -354,10 +354,10 @@ sap.ui.define([
                                 })
                                 // Update the Reservations
                                 oModel.read(`/RESERVATIONSHeadersSet`, {
-                                    success: function(oData){
+                                    success: function (oData) {
                                         that.onUpdateReservation(oData, oObject.Identifiant, that)
                                     },
-                                    error:function(oErr){
+                                    error: function (oErr) {
                                         console.log(oErr);
                                     }
                                 })
@@ -412,6 +412,28 @@ sap.ui.define([
                                             text: "Print",
                                             press: function (oEvent) {
                                                 // Print the details related to the Reservation
+                                                var doc = new jsPDF();
+                                                // Set the document properties
+                                                doc.setProperties({
+                                                    title: "My PDF Document",
+                                                    subject: "A PDF document generated from SAPUI5",
+                                                    author: "Your Name",
+                                                    keywords: "SAPUI5, PDF, JavaScript"
+                                                });
+
+                                                // Add content to the document
+                                                doc.setFontSize(22);
+                                                doc.text("My PDF Document", 10, 10);
+                                                doc.setFontSize(16);
+                                                doc.text("This PDF was generated from SAPUI5", 10, 20);
+
+                                                // Fill the PDF with data from your program
+                                                var data = "Hello, world!"; 
+                                                doc.setFontSize(14);
+                                                doc.text(data, 10, 30);
+
+                                                // Save the PDF document
+                                                doc.save("my_document.pdf");
                                             }
                                         }),
                                         new sap.m.Button({
