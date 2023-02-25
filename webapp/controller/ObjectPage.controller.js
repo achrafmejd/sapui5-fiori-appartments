@@ -13,9 +13,11 @@ sap.ui.define([
             var that = this
             var sItemId = oEvent.getParameter("arguments").id;
             const oModel = this.getOwnerComponent().getModel();
+            var oObject;
             oModel.read(`/APPARTMENTSHeadersSet('${sItemId}')`, {
                 success: function (oData) {
                     console.log(oData);
+                    oObject = oData;
                     // Set the Data to the view
                     const jModel = new sap.ui.model.json.JSONModel(oData);
                     that.getView().setModel(jModel);
@@ -24,7 +26,7 @@ sap.ui.define([
                     });
                     oModel.read(`/RESERVATIONSHeadersSet`, {
                         success: function (oData) {
-                            that.onUpdateReservation(oData, sItemId, that)
+                            that.onUpdateReservation(oData, sItemId, that, oObject)
                         }
                     })
                 },
@@ -355,7 +357,7 @@ sap.ui.define([
                                 // Update the Reservations
                                 oModel.read(`/RESERVATIONSHeadersSet`, {
                                     success: function (oData) {
-                                        that.onUpdateReservation(oData, oObject.Identifiant, that)
+                                        that.onUpdateReservation(oData, oObject.Identifiant, that, oObject)
                                     },
                                     error: function (oErr) {
                                         console.log(oErr);
@@ -388,7 +390,7 @@ sap.ui.define([
             });
             oDialog.open();
         },
-        onUpdateReservation: function (oReservations, sItemId, that) {
+        onUpdateReservation: function (oReservations, sItemId, that, object = {}) {
             console.log("CALLED CALLED", sItemId);
             const relativeReservations = oReservations.results.filter(r => r.IdAppartement == sItemId.toUpperCase())
             console.log(relativeReservations);
@@ -409,37 +411,104 @@ sap.ui.define([
                                 new sap.m.HBox({
                                     items: [
                                         new sap.m.Button({
-                                            text: "Print",
+                                            text: "",
+                                            icon: "sap-icon://print",
+                                            type: "Accept",
                                             press: function (oEvent) {
-                                                // Print the details related to the Reservation
+                                                const reservation = {
+                                                    id: oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("IdReservation"),
+                                                    app: oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("IdAppartement"),
+                                                    cin: oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("CinLocataire"),
+                                                    debut: new Date(oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("DateDebut")).toLocaleDateString('en-GB'),
+                                                    fin: new Date(oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("DateFin")).toLocaleDateString('en-GB'),
+                                                    nbr_nuits: that._numberOfdays(new Date(oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("DateFin")), new Date(oEvent.getSource().getParent().getParent().getBindingContext("oListModel").getProperty("DateDebut")))
+                                                }
+                                                console.log(reservation);
+                                                console.log(object);
+                                                // Create a new instance of jspdf
                                                 var doc = new jsPDF();
-                                                // Set the document properties
-                                                doc.setProperties({
-                                                    title: "My PDF Document",
-                                                    subject: "A PDF document generated from SAPUI5",
-                                                    author: "Your Name",
-                                                    keywords: "SAPUI5, PDF, JavaScript"
-                                                });
+                                                doc.setFont('helvetica');
+                                                doc.setFontSize(10);
 
-                                                // Add content to the document
-                                                doc.setFontSize(22);
-                                                doc.text("My PDF Document", 10, 10);
-                                                doc.setFontSize(16);
-                                                doc.text("This PDF was generated from SAPUI5", 10, 20);
+                                                const img = new Image();
+                                                img.src = '/media/logo_inetum.jpg';
+                                                img.onload = () => {
+                                                    // await for the image to be fully loaded
+                                                    doc.addImage(img, 'JPG', 10, 10, 50, 40);
+                                                
+                                                    // Add the company information
+                                                    doc.setFontSize(14);
+                                                    doc.setFont("helvetica", "bold");
+                                                    doc.text('ZOUHIR & MEJD Agency', 70, 20);
+                                                    doc.setFontSize(10);
+                                                    doc.text('Bouskoura', 70, 30);
+                                                    doc.text('Hay al Andalous', 70, 35);
+                                                    doc.text('(212) 05 22 52 50 22', 70, 40);
+                                                    doc.text('contact@z&m-llc.com', 70, 45);
+    
+                                                    // Add the invoice date and due date
+                                                    doc.setFontSize(10);
+                                                    doc.text('Date:', 150, 20);
+                                                    doc.text(`${new Date().toLocaleDateString('en-GB')}`, 170, 20);
+                                            
+                                                    // Add the customer information
+                                                    doc.setFontSize(14);
+                                                    doc.text('FACTURE AU PROFIT DE:', 10, 70);
+                                                    doc.setFontSize(10);
+                                                    doc.text(`Madame/Monsieur, Detenteur de la CIN : ${reservation.cin}`, 10, 80);
+                                         
+                                                    // Add the table header
+                                                    doc.setFontSize(12);
+                                                    doc.setFillColor(204, 204, 204);
+                                                    doc.rect(10, 120, 190, 10, 'F');
+                                                    doc.setTextColor(255, 255, 255);
+    
+                                                    doc.text('Reservation', 12, 126);
+                                                    doc.text('Appartement', 50, 126);
+                                                    doc.text('A partir de', 110, 126);
+                                                    doc.text("Jusqu'au", 150, 126);
+                                                    doc.text('Nbr Nuits', 180, 126);
+                                                    doc.setTextColor(0, 0, 0);
+    
+                                                    // Add the table rows
+                                                    var startY = 135;
+                                                    var items = [
+                                                        {
+                                                            item: `#${reservation.id}`,
+                                                            description: `#${reservation.app}`,
+                                                            from: `${reservation.debut}`,
+                                                            to: `${reservation.fin}`,
+                                                            nbr: `${reservation.nbr_nuits}`
+                                                        },
+                                                    ];
+    
+                                                    for (var i = 0; i < items.length; i++) {
+                                                        var item = items[i];
 
-                                                // Fill the PDF with data from your program
-                                                var data = "Hello, world!"; 
-                                                doc.setFontSize(14);
-                                                doc.text(data, 10, 30);
-
-                                                // Save the PDF document
-                                                doc.save("my_document.pdf");
-                                            }
-                                        }),
-                                        new sap.m.Button({
-                                            text: "Abort",
-                                            press: function (oEvent) {
-                                                // Stop the reservation => Change the end date to today => print a doc
+                                                        doc.text(item.item, 12, startY);
+                                                        doc.text(item.description, 50, startY);
+                                                        doc.text(item.from, 110, startY);
+                                                        doc.text(item.to, 150, startY);
+                                                        doc.text(item.nbr, 180, startY);
+                                                        startY += 10;
+                                                    }
+                                                    doc.text('Signatures', 12, doc.internal.pageSize.height - 40);
+    
+                                                    // Add the table footer
+                                                    doc.setFillColor(204, 204, 204);
+                                                    doc.rect(10, startY, 190, 10, 'F');
+                                                    doc.setTextColor(255, 255, 255);
+                                                    doc.text('Total à payer', 150, startY + 6);
+                                                    doc.text(parseInt(reservation.nbr_nuits) * parseInt(object.PrixNuitee) + " MAD", 180, startY + 6);
+    
+                                                    // Add the signature section
+                                                    var signatureY = doc.internal.pageSize.height - 50;
+                                                    doc.setLineWidth(0.5);
+                                                    doc.line(12, signatureY + 5, 70, signatureY + 5);
+    
+                                                    // / Save the PDF file
+                                                    doc.save(`Facture[${reservation.id}].pdf`);
+                                                };
 
                                             }
                                         })
@@ -467,6 +536,11 @@ sap.ui.define([
                     press: function () { } // empty press handler to make the item clickable
                 }).addStyleClass('custom-list-item')
             });
+        },
+        _numberOfdays: function (date_1, date_2) {
+            let difference = date_1.getTime() - date_2.getTime();
+            let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+            return TotalDays;
         }
     });
 
