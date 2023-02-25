@@ -1,4 +1,4 @@
-<mvc:View controllerName="appartments.controller.CreateDialog" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:w="sap.ui.webc.main" xmlns:l="sap.ui.layout">
+<mvc:View xmlns:form="sap.ui.layout.form" controllerName="appartments.controller.CreateDialog" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:w="sap.ui.webc.main" xmlns:l="sap.ui.layout">
     <!-- Create Button -->
     <FlexBox id="_IDGenFlexBox1" class="_IDGenFlexBox1_container" >
         <Button type="Accept" icon="sap-icon://home" id="_create" text="Nouveau" press=".handleOpen" />
@@ -11,7 +11,6 @@
                 <Input type="Text" id="Identifiant" placeholder="Enter ID" required="true" />
                 <TextArea id="Description" width="100%" placeholder="Enter a Description" />
             </Panel>
-
             <Panel id="_IDGenPanel3" headerText="Détails du bien">
                 <!-- <Label id="_IDGenLabel3" showColon="true" text="Nbr Pieces" /> -->
                 <Input type="Number" id="NbrPieces_input" placeholder="Nombre total de Piece" />
@@ -29,7 +28,7 @@
             <Panel id="_IDGenPanel4" headerText="Disponibilité et Tarif">
                 <Label id="_IDGenLabel11" showColon="true" text="Prix/Nuitée en MAD" />
                 <Input type="Number" id="_IDGenInput5"  placeholder="Prix"/>
-                <CheckBox id="_IDGenCheckBox0" text="Disponible à partir du moment de l'enregistrement" selected="true" />
+                <CheckBox id="_IDGenCheckBox0" text="Disponible à partir du moment de l'enregistrement" selected="true" editable="false"/>
             </Panel>
         </l:VerticalLayout>
         <buttons>

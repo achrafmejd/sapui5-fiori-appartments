@@ -322,8 +322,9 @@ sap.ui.define([
                     })
                 ],
                 beginButton: new sap.m.Button({
-                    text: "Edit",
+                    text: "Proceder",
                     type: "Accept",
+                    
                     icon: "sap-icon://add",
                     press: function () {
                         // Retrieve all the input values
