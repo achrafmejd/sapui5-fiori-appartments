@@ -1,18 +1,19 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    'sap/ui/model/Filter',
-    // Below for Button Modla
+    // Below for Button Modla,
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
 
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("appartments.controller.View1", {
             onInit: function () {
-                this.onReadAll();
+                // this.onReadAll();
 
             },
             onReadAll: function () {
@@ -106,44 +107,19 @@ sap.ui.define([
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appartmentsDetails", { id: oData.Identifiant });
             },
-            onPopinLayoutChanged: function (oEvent) {
-                // console.log("Ok");
-                var sSelectedValue = oEvent.getSource().getValue();
-                const oData = Object.values(this.getView("idProducts").getModel().oData)
-                // console.log(Object.values(oData));
-                const res = oData.filter((dt) => {
-                    const regex = new RegExp(`${sSelectedValue}`, "gi");
-                    return dt.Identifiant && dt.Identifiant.match(regex);
-                })
+            onSearch: function (oEvent) {
+                // build filter array
+                var aFilter = [];
+                var sQuery = oEvent.getParameter("query");
 
-                console.log(res);
+                console.log("Query p :", sQuery);
+                if (sQuery && sQuery.length > 0) {
+                    aFilter.push(new Filter("Identifiant", FilterOperator.Contains, sQuery));
+                }
 
-                // const oSearchView = this.getView().byId("searchField");
-                // res.forEach((item) => {
-                //     oSearchView.addSuggestionItem(new sap.m.SuggestionItem({
-                //         text: item
-                //     }));
-                // });
-
-                // const oSearchView = this.getView().byId("searchField");
-                // // Clear the suggestion items aggregation
-                // oSearchView.removeAllSuggestionItems();
-                // res.forEach((item) => {
-                //     oSearchView.addSuggestionItem(new sap.m.SuggestionItem({
-                //         text: item
-                //     }));
-                // });
-                const oSearchField = this.getView().byId("searchField");
-
-                res.forEach((oItem) => {
-                  const oSuggestionItem = new sap.m.SuggestionItem({
-                    text: oItem.Identifiant,
-                    key: oItem.Identifiant
-                  });
-              
-                  oSearchField.addSuggestionItem(oSuggestionItem);
-                });
-
+                var oTable = this.byId("idProducts");
+                var oBinding = oTable.getBinding("items");
+                oBinding.filter(aFilter);
             }
 
         });

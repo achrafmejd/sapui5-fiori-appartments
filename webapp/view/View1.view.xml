@@ -10,7 +10,14 @@
                         <content>
                             <Title id="_IDGenTitle1" text="Appartements" level="H2" />
                             <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                            <SearchField id="searchField" width="50%" placeholder="Search for..." enableSuggestions="true" search=".onSearch" suggest=".onSuggest" liveChange="onPopinLayoutChanged">
+                            <SearchField 
+                                id="searchField" 
+                                width="50%" 
+                                placeholder="Search for..." 
+                                enableSuggestions="true" 
+                                search="onSearch"
+                            >
+                                <!-- liveChange="onPopinLayoutChanged" -->
                             <SuggestionItem id="_IDGenSuggestionItem1" text="Test" description="" key="" />
                             </SearchField>
                         
