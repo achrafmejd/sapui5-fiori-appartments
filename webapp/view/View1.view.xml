@@ -15,7 +15,7 @@
                                 width="50%" 
                                 placeholder="Search for..." 
                                 enableSuggestions="true" 
-                                search="onSearch"
+                                liveChange="onSearch"
                             >
                                 <!-- liveChange="onPopinLayoutChanged" -->
                             <SuggestionItem id="_IDGenSuggestionItem1" text="Test" description="" key="" />

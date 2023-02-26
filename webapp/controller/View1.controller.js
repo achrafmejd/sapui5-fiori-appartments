@@ -107,10 +107,11 @@ sap.ui.define([
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appartmentsDetails", { id: oData.Identifiant });
             },
-            onSearch: function (oEvent) {
-                // build filter array
+            onSearch: function(oEvent){
+                // console.log(oEvent.getParameter("query"));
+                console.log(oEvent.getSource().getValue());
                 var aFilter = [];
-                var sQuery = oEvent.getParameter("query");
+                var sQuery = oEvent.getSource().getValue();
 
                 console.log("Query p :", sQuery);
                 if (sQuery && sQuery.length > 0) {
