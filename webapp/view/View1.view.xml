@@ -1,7 +1,7 @@
 <mvc:View controllerName="appartments.controller.View1" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m" xmlns:w="sap.ui.webc.main" xmlns:l="sap.ui.layout" xmlns:c="sap.suite.ui.microchart">
-    <Page id="page" title=" {i18n>title}">
+    <Page id="page" class="page">
         <!-- CreateDialog View is Loaded Below -->
-        <mvc:XMLView id="_IDGenXMLView1" viewName="appartments.view.CreateDialog" />
+        <!-- <mvc:XMLView id="_IDGenXMLView1" viewName="appartments.view.CreateDialog" /> -->
         <!-- Table -->
         <ScrollContainer id="_IDGenScrollContainer1" horizontal="true">
             <Table id="idProducts" selectionChange="onRowSelection" width="100%" items="{/APPARTMENTSHeadersSet}" alternateRowColors="true" growing="false" growingScrollToLoad="false" mode="SingleSelectMaster">
@@ -12,20 +12,13 @@
                             <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                             <SearchField 
                                 id="searchField" 
-                                width="50%" 
+                                width="40%" 
                                 placeholder="Search for..." 
                                 enableSuggestions="true" 
                                 liveChange="onSearch"
                             >
-                                <!-- liveChange="onPopinLayoutChanged" -->
-                            <SuggestionItem id="_IDGenSuggestionItem1" text="Test" description="" key="" />
                             </SearchField>
-                        
-                            <Label id="_IDGenLabel1" text="Sticky options:" />
-                            <CheckBox id="_IDGenCheckBox1" text="ColumnHeaders" select="onSelect" />
-                            <CheckBox id="_IDGenCheckBox2" text="HeaderToolbar" select="onSelect" />
-                            <CheckBox id="_IDGenCheckBox3" text="InfoToolbar" select="onSelect" />
-                            <ToggleButton id="toggleInfoToolbar" text="Hide/Show InfoToolbar" press="onToggleInfoToolbar" />
+                            <mvc:XMLView id="_IDGenXMLView1" width="auto" viewName="appartments.view.CreateDialog" />
                         </content>
                     </OverflowToolbar>
                 </headerToolbar>

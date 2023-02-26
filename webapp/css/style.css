@@ -1,5 +1,8 @@
 /* Enter your custom styles here */
-
+.page h1{
+    color: red;
+    font-size: 24px;
+}
 
 .panel-button-container{
     display: flex;
@@ -47,4 +50,5 @@
     padding: 1%;
     display: flex;
     justify-content: flex-end;
+    /* width: 50%; */
 }
