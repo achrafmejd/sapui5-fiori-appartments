@@ -224,8 +224,8 @@ sap.ui.define([
                                     success: function (oData) {
                                         const jModel = new sap.ui.model.json.JSONModel(oData);
                                         that.getView().setModel(jModel);
-                                        // Update the object page with the new data
-                                        // this.onInit();
+                                        
+                                        
                                     },
                                     error: function (oErr) {
                                         console.log(oErr);
@@ -324,7 +324,7 @@ sap.ui.define([
                 beginButton: new sap.m.Button({
                     text: "Proceder",
                     type: "Accept",
-                    
+
                     icon: "sap-icon://add",
                     press: function () {
                         // Retrieve all the input values
@@ -436,7 +436,7 @@ sap.ui.define([
                                                 img.onload = () => {
                                                     // await for the image to be fully loaded
                                                     doc.addImage(img, 'JPG', 10, 10, 50, 40);
-                                                
+
                                                     // Add the company information
                                                     doc.setFontSize(14);
                                                     doc.setFont("helvetica", "bold");
@@ -446,31 +446,31 @@ sap.ui.define([
                                                     doc.text('Hay al Andalous', 70, 35);
                                                     doc.text('(212) 05 22 52 50 22', 70, 40);
                                                     doc.text('contact@z&m-llc.com', 70, 45);
-    
+
                                                     // Add the invoice date and due date
                                                     doc.setFontSize(10);
                                                     doc.text('Date:', 150, 20);
                                                     doc.text(`${new Date().toLocaleDateString('en-GB')}`, 170, 20);
-                                            
+
                                                     // Add the customer information
                                                     doc.setFontSize(14);
                                                     doc.text('FACTURE AU PROFIT DE:', 10, 70);
                                                     doc.setFontSize(10);
                                                     doc.text(`Madame/Monsieur, Detenteur de la CIN : ${reservation.cin}`, 10, 80);
-                                         
+
                                                     // Add the table header
                                                     doc.setFontSize(12);
                                                     doc.setFillColor(204, 204, 204);
                                                     doc.rect(10, 120, 190, 10, 'F');
                                                     doc.setTextColor(255, 255, 255);
-    
+
                                                     doc.text('Reservation', 12, 126);
                                                     doc.text('Appartement', 50, 126);
                                                     doc.text('A partir de', 110, 126);
                                                     doc.text("Jusqu'au", 150, 126);
                                                     doc.text('Nbr Nuits', 180, 126);
                                                     doc.setTextColor(0, 0, 0);
-    
+
                                                     // Add the table rows
                                                     var startY = 135;
                                                     var items = [
@@ -482,7 +482,7 @@ sap.ui.define([
                                                             nbr: `${reservation.nbr_nuits}`
                                                         },
                                                     ];
-    
+
                                                     for (var i = 0; i < items.length; i++) {
                                                         var item = items[i];
 
@@ -494,19 +494,19 @@ sap.ui.define([
                                                         startY += 10;
                                                     }
                                                     doc.text('Signatures', 12, doc.internal.pageSize.height - 40);
-    
+
                                                     // Add the table footer
                                                     doc.setFillColor(204, 204, 204);
                                                     doc.rect(10, startY, 190, 10, 'F');
                                                     doc.setTextColor(255, 255, 255);
                                                     doc.text('Total à payer', 150, startY + 6);
                                                     doc.text(parseInt(reservation.nbr_nuits) * parseInt(object.PrixNuitee) + " MAD", 180, startY + 6);
-    
+
                                                     // Add the signature section
                                                     var signatureY = doc.internal.pageSize.height - 50;
                                                     doc.setLineWidth(0.5);
                                                     doc.line(12, signatureY + 5, 70, signatureY + 5);
-    
+
                                                     // / Save the PDF file
                                                     doc.save(`Facture[${reservation.id}].pdf`);
                                                 };
