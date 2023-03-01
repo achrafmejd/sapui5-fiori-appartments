@@ -224,8 +224,6 @@ sap.ui.define([
                                     success: function (oData) {
                                         const jModel = new sap.ui.model.json.JSONModel(oData);
                                         that.getView().setModel(jModel);
-                                        
-                                        
                                     },
                                     error: function (oErr) {
                                         console.log(oErr);
